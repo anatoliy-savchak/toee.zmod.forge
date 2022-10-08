@@ -1,0 +1,27 @@
+{
+  "origin": 0, 
+  "_isofmodule": "scr/utils_storage.py", 
+  "name": "G_F87334A8_A6B5_435D_9092_01CFAD67681C", 
+  "alias": null, 
+  "_isofclass": "ObjectStorage", 
+  "data": {
+    "ctrl": {
+      "_isofclass": "CtrlVillageSmith", 
+      "_isofmodule": "scr/py14710_smith.py", 
+      "id": "G_F87334A8_A6B5_435D_9092_01CFAD67681C", 
+      "vars": {
+        "initial_rotation": 4.712389945983887, 
+        "initial_position": [
+          478, 
+          508
+        ], 
+        "daemon_name": "CtrlVillage"
+      }, 
+      "spells": {
+        "_isofclass": "NPCSpells", 
+        "_isofmodule": "scr/utils_npc_spells.py", 
+        "spells": {}
+      }
+    }
+  }
+}

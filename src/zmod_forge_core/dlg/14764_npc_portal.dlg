@@ -1,0 +1,20 @@
+{1}{Travel from Keep}{Travel from Keep}{}{}{}{}
+{2}{Corinth.}{}{1}{ctrl(npc).can_travel_keep_to_corinth(npc)}{0}{ctrl(npc).travel_keep_to_corinth(npc)}
+{3}{Caves.}{}{1}{ctrl(npc).can_travel_keep_to_caves(npc)}{0}{ctrl(npc).travel_keep_to_caves(npc)}
+{4}{Orc Fort.}{}{1}{ctrl(npc).can_travel_keep_to_orc_fort(npc)}{0}{ctrl(npc).travel_keep_to_orc_fort(npc)}
+{5}{F:}{}{1}{}{0}{}
+
+{21}{Travel from Corinth}{Travel from Keep}{}{}{}{}
+{22}{Keep.}{}{1}{ctrl(npc).can_travel_corinth_to_keep(npc)}{0}{ctrl(npc).travel_corinth_to_keep(npc)}
+{23}{Orc Fort.}{}{1}{ctrl(npc).can_travel_corinth_to_orc_fort(npc)}{0}{ctrl(npc).travel_corinth_to_orc_fort(npc)}
+{24}{Caves.}{}{1}{ctrl(npc).can_travel_corinth_to_cave_entrance(npc)}{0}{ctrl(npc).travel_corinth_to_cave_entrance(npc)}
+{25}{F:}{}{1}{}{0}{}
+
+{31}{Travel from Orc Fort}{Travel from Orc Fort}{}{}{}{}
+{32}{Corinth.}{}{1}{ctrl(npc).can_travel_orc_fort_to_corinth(npc)}{0}{ctrl(npc).travel_orc_fort_to_keep(npc)}
+{33}{Keep.}{}{1}{ctrl(npc).can_travel_orc_fort_to_keep(npc)}{0}{ctrl(npc).travel_orc_fort_to_keep(npc)}
+{35}{F:}{}{1}{}{0}{}
+
+{41}{Travel from Cave Entrance}{Travel from Cave Entrance}{}{}{}{}
+{42}{Keep.}{}{1}{ctrl(npc).can_travel_cave_entrance_to_keep(npc)}{0}{ctrl(npc).travel_cave_entrance_to_keep(npc)}
+{45}{F:}{}{1}{}{0}{}

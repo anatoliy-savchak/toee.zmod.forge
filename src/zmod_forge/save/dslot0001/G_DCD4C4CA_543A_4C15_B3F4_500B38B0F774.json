@@ -1,0 +1,27 @@
+{
+  "origin": 0, 
+  "_isofmodule": "scr/utils_storage.py", 
+  "name": "G_DCD4C4CA_543A_4C15_B3F4_500B38B0F774", 
+  "alias": null, 
+  "_isofclass": "ObjectStorage", 
+  "data": {
+    "ctrl": {
+      "_isofclass": "CtrlVillageWizard", 
+      "_isofmodule": "scr/py14712_wizard.py", 
+      "id": "G_DCD4C4CA_543A_4C15_B3F4_500B38B0F774", 
+      "vars": {
+        "initial_rotation": 1.0471999645233154, 
+        "initial_position": [
+          503, 
+          477
+        ], 
+        "daemon_name": "CtrlVillage"
+      }, 
+      "spells": {
+        "_isofclass": "NPCSpells", 
+        "_isofmodule": "scr/utils_npc_spells.py", 
+        "spells": {}
+      }
+    }
+  }
+}

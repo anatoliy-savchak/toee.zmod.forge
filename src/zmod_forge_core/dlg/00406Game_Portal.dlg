@@ -1,0 +1,6 @@
+{1}{The portal opens before you...}{The portal opens before you...}{}{}{}{game.particles( 'ef-NODE-Air portal', npc ); game.sound( 4008 ); game.global_flags[601] = 1; zmod_startup()}
+{2}{Start The Sunless Citadel.}{Start The Sunless Citadel.}{1}{}{0}{game.fade_and_teleport( 0, 0, 0, module_consts.MAP_ID_VILLAGE, module_consts.VILLAGE_ENTRY_COORDS_ROAD_NORTH[0], module_consts.VILLAGE_ENTRY_COORDS_ROAD_NORTH[1])}
+{11}{Return to shopmap.}{}{1}{}{0}{}
+
+{4000}{There's little to be gained by attacking the game portal.}{There's little to be gained by attacking the game portal.}{}{}{}{}
+{4001}{[exit]}{}{1}{}{0}{}

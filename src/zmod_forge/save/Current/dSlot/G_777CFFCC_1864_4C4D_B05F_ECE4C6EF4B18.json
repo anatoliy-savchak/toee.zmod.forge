@@ -1,0 +1,85 @@
+{
+  "origin": 5010, 
+  "_isofmodule": "scr/utils_storage.py", 
+  "name": "G_777CFFCC_1864_4C4D_B05F_ECE4C6EF4B18", 
+  "alias": "CtrlVillage", 
+  "_isofclass": "ObjectStorage", 
+  "data": {
+    "CtrlVillage": {
+      "factions_existance": {
+        "73": [
+          4, 
+          0
+        ]
+      }, 
+      "default_faction": null, 
+      "encounters_placed": 1, 
+      "last_heartbeat_time_sec": 140410, 
+      "vars": {}, 
+      "last_patrol_spawned_shrs": 0, 
+      "last_heartbeat_time_hr": 39, 
+      "default_map": 5010, 
+      "_isofclass": "CtrlVillage", 
+      "id": "G_777CFFCC_1864_4C4D_B05F_ECE4C6EF4B18", 
+      "default_script_id": 6600, 
+      "patrol_spawned_count": 0, 
+      "last_entered_shrs": 39, 
+      "_isofmodule": "scr/py06600_daemon_village.py", 
+      "default_monster_prefix": "village", 
+      "first_entered_shrs": 39, 
+      "last_leave_shrs": 39, 
+      "haertbeats_since_sleep_status_update": 0, 
+      "promters_info": [], 
+      "monsters": {
+        "merchant_wizard": {
+          "_isofmodule": "scr/monster_info.py", 
+          "name": "merchant_wizard", 
+          "proto": 14712, 
+          "activated": 0, 
+          "monster_code_name": "wizard", 
+          "_isofclass": "MonsterInfo", 
+          "cr": 0, 
+          "revealed": 0, 
+          "id": "G_5C8F40E7_31B9_417D_B2CD_D6AAE50C742E", 
+          "encounter_code": "merchant"
+        }, 
+        "merchant_priest": {
+          "_isofmodule": "scr/monster_info.py", 
+          "name": "merchant_priest", 
+          "proto": 14713, 
+          "activated": 0, 
+          "monster_code_name": "priest", 
+          "_isofclass": "MonsterInfo", 
+          "cr": 5, 
+          "revealed": 0, 
+          "id": "G_932589E7_BEDF_430E_94CD_A9EAEF5DBF94", 
+          "encounter_code": "merchant"
+        }, 
+        "merchant_smith": {
+          "_isofmodule": "scr/monster_info.py", 
+          "name": "merchant_smith", 
+          "proto": 14710, 
+          "activated": 0, 
+          "monster_code_name": "smith", 
+          "_isofclass": "MonsterInfo", 
+          "cr": 0, 
+          "revealed": 0, 
+          "id": "G_F87334A8_A6B5_435D_9092_01CFAD67681C", 
+          "encounter_code": "merchant"
+        }, 
+        "merchant_smith_wife": {
+          "_isofmodule": "scr/monster_info.py", 
+          "name": "merchant_smith_wife", 
+          "proto": 14711, 
+          "activated": 0, 
+          "monster_code_name": "smith_wife", 
+          "_isofclass": "MonsterInfo", 
+          "cr": 0, 
+          "revealed": 0, 
+          "id": "G_39D39B5B_7E1A_47F0_BE83_5178E204ED23", 
+          "encounter_code": "merchant"
+        }
+      }
+    }
+  }
+}
