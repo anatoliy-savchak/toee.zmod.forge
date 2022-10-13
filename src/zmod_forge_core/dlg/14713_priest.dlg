@@ -135,26 +135,26 @@
 {1309}{E:}{}{1}{}{0}{}
 
 {1340}{Barter options:}{Barter options:}{}{}{}{}
-{1342}{B:Buy Divine Scroll Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_0)}
-{1343}{B:Buy Divine Scroll Level 1}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_1)}
-{1344}{B:Buy Divine Scroll Level 2}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_2)}
+{1342}{B:Buy Divine Scroll Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_0)}
+{1343}{B:Buy Divine Scroll Level 1}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_1)}
+{1344}{B:Buy Divine Scroll Level 2}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_2)}
 {1347}{Next...}{}{1}{}{1350}{}
 {1348}{Back...}{}{1}{}{1300}{}
 {1349}{E:}{}{1}{}{0}{}
 
 {1350}{Barter options:}{Barter options:}{}{}{}{}
-{1352}{B:Buy Divine Scroll Level 3}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_3)}
-{1353}{B:Buy Divine Scroll Level 4}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_4)}
-{1354}{B:Buy Divine Scroll Level 5}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_5)}
+{1352}{B:Buy Divine Scroll Level 3}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_3)}
+{1353}{B:Buy Divine Scroll Level 4}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_4)}
+{1354}{B:Buy Divine Scroll Level 5}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_5)}
 {1357}{Next...}{}{1}{}{1360}{}
 {1358}{Back...}{}{1}{}{1300}{}
 {1359}{E:}{}{1}{}{0}{}
 
 {1360}{Barter options:}{Barter options:}{}{}{}{}
-{1362}{B:Buy Divine Scroll Level 6}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_6)}
-{1363}{B:Buy Divine Scroll Level 7}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_7)}
-{1364}{B:Buy Divine Scroll Level 8}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_8)}
-{1365}{B:Buy Divine Scroll Level 9}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_9)}
+{1362}{B:Buy Divine Scroll Level 6}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_6)}
+{1363}{B:Buy Divine Scroll Level 7}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_7)}
+{1364}{B:Buy Divine Scroll Level 8}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_8)}
+{1365}{B:Buy Divine Scroll Level 9}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_9)}
 {1368}{Back...}{}{1}{}{1300}{}
 {1369}{E:}{}{1}{}{0}{}
 

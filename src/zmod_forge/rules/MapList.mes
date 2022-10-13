@@ -17,4 +17,6 @@
 // List of valid maps for game & Starting X/Y position
 {5000}{ShopMaps, 514, 445, Type: SHOPPING_MAP, Flag: UNFOGGED}
 {5107}{ShopMap, 493, 477, Flag: DAYNIGHT_XFER, Flag: UNFOGGED, Flag: BEDREST}
-{5010}{ZMOD_VILLAGE, 480, 480, Flag: OUTDOOR}
+{5010}{Village, 480, 480, Flag: OUTDOOR, Flag: DAYNIGHT_XFER}
+{5011}{Road1, 480, 480, Flag: OUTDOOR}
+{243}{CITADEL1}

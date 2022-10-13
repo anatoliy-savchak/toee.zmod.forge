@@ -161,6 +161,7 @@
     <Compile Include="zmod_forge_core\scr\py06123_event_object_fireplace.py" />
     <Compile Include="zmod_forge_core\scr\py06214_doors_autodestroy.py" />
     <Compile Include="zmod_forge_core\scr\py06600_daemon_village.py" />
+    <Compile Include="zmod_forge_core\scr\py06601_village_npc.py" />
     <Compile Include="zmod_forge_core\scr\py14713_priest.py" />
     <Compile Include="zmod_forge_core\scr\py14764_npc_portal.py" />
     <Compile Include="zmod_forge_core\scr\py04000_monster_manual1_p1.py" />

@@ -14,10 +14,14 @@
 
 {0000}{--TEMP--}
 {0001}{ShopMap-day}
-{0240}{ZMOD_VILLAGE}
+{0240}{Village}
+{0242}{Road1}
+{0243}{CitadelLv1}
 
 // NIGHT MAPS 1000-1999
 
 {1000}{--TEMP--}
 {1001}{ShopMap-night}
-{1240}{ZMOD_VILLAGE-night}
+{1240}{Village-night}
+{1242}{Road1-night}
+{1243}{CitadelLv1}
