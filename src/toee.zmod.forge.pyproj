@@ -165,7 +165,6 @@
     <Compile Include="zmod_forge_core\scr\py14713_priest.py" />
     <Compile Include="zmod_forge_core\scr\py14764_npc_portal.py" />
     <Compile Include="zmod_forge_core\scr\py04000_monster_manual1_p1.py" />
-    <Compile Include="zmod_forge_core\scr\py14713_cleric.py" />
     <Compile Include="zmod_forge_core\scr\py14712_wizard.py" />
     <Compile Include="zmod_forge_core\scr\py14711_smith_wife.py" />
     <Compile Include="zmod_forge_core\scr\py14710_smith.py" />
