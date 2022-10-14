@@ -106,7 +106,12 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 		return
 
 	def place_tavern(self):
-		self.create_npc_at(utils_obj.sec2loc(492, 461), py06602_village_npc.CtrlKerowyn, const_toee.ROT02, "main", "kerowyn", None, 0, 1)
+		kerowyn, kerowyn_ctrl = self.create_npc_at(utils_obj.sec2loc(492, 461), py06602_village_npc.CtrlKerowyn, const_toee.ROT02, "main", "kerowyn", None, 0, 1)
+
+		bodyguard, bodyguard_ctrl = self.create_npc_at(utils_obj.sec2loc(493, 460), py06602_village_npc.CtrlKerowynBodyguard, const_toee.ROT02, "main", "bodyguard", None, 0, 1)
+		if bodyguard:
+			bodyguard.obj_set_obj(toee.obj_f_npc_leader, kerowyn)
+			bodyguard.turn_towards(kerowyn)
 		return
 
 	def place_merchants(self):

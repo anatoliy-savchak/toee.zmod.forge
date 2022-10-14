@@ -66,3 +66,35 @@ class CtrlKerowyn(ctrl_behaviour.CtrlBehaviourAI):
 		else: 
 			toee.game.quests[module_quests.QUEST_VILLAGE_HUCRELE].state = toee.qs_mentioned
 		return
+
+class CtrlKerowynBodyguard(ctrl_behaviour.CtrlBehaviourAI):
+	@classmethod
+	def get_proto_id(cls): return const_proto_npc.PROTO_NPC_DWARF_MAN
+
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		npc.scripts[const_toee.sn_dialog] = MODULE_SCRIPT_ID
+		npc.scripts[const_toee.sn_heartbeat] = MODULE_SCRIPT_ID
+		#npc.faction_add(factions_zmod.FACTION_NEUTRAL_NPC)
+
+		npc.make_class(const_toee.stat_level_npc_warriror, 4)
+
+		utils_npc.npc_description_set_new(npc, "Bodyguard")
+
+		hairStyle = utils_npc.HairStyle.from_npc(npc)
+		hairStyle.style = const_toee.hair_style_shorthair
+		hairStyle.color = const_toee.hair_color_black
+		hairStyle.update_npc(npc)
+
+		npc.object_flag_set(toee.OF_INVULNERABLE)
+		npc.npc_flag_set(toee.ONF_NO_ATTACK)
+
+		# create inventory
+		utils_item.item_create_in_inventory(const_proto_armor.PROTO_ARMOR_HALF_PLATE, npc, 1, 1)
+		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_LEATHER_BOOTS_BLACK, npc, 1, 1)
+		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_LONGSWORD_MASTERWORK, npc, 1, 1)
+		utils_item.item_create_in_inventory(const_proto_armor.PROTO_SHIELD_LARGE_MASTERWORK_STEEL, npc, 1, 1)
+		
+		npc.item_wield_best_all()
+		utils_npc.npc_generate_hp(npc)
+		return
