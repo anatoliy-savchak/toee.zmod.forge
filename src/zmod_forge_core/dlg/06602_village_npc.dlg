@@ -1,0 +1,16 @@
+{1}{Hello! May I have a word with you?}{Hello! May I have a word with you?}{}{}{}{}
+{2}{Hello, I'm @pcname@.}{}{1}{}{10}{}
+{4}{What is it?}{}{1}{}{10}{}
+
+{10}{My name is Kerowyn Hucrele. I'm looking for my missing nephews, can you help me?}{My name is Kerowyn Hucrele. I'm looking for my missing nephews, can you help me?}{}{}{}{}
+{11}{I will gladly help you m'lady.}{}{1}{}{20}{}
+
+{20}{My nephews Talgen and Sharwyn went exploring local abandoned ruins two month ago and no one heard anything from them since.}{My nephews Talgen and Sharwyn went exploring local abandoned ruins two month ago and no one heard anything from them since.}{}{}{}{}
+{22}{Continue.}{}{1}{}{30}{}
+
+{30}{Please find and return them, or at least bring two gold signet worn by them. I will reward you with 125 gp each per signed ring.}{Please find and return them, or at least bring two gold signet worn by them. I will reward you with 125 gp each per signed ring.}{}{}{}{}
+{31}{Yes, I will, my good lady.}{}{1}{}{0}{CtrlKerowyn.dialog_give_quest(npc, 1)}
+{32}{I'll think about.}{}{1}{}{0}{CtrlKerowyn.dialog_give_quest(npc, 0)}
+
+{50}{Hello. Do you bring news about my nephews?}{Hello. Do you bring news about my nephews?}{}{}{}{}
+{51}{Not yet. I'll be off.}{}{1}{}{0}{}
