@@ -504,6 +504,10 @@ class PyObjHandle(object):
 		"""Set internal field int64 value. npc.obj_set_int64(int[obj_f_*]: field, int: value) -> None"""
 		return
 
+	def obj_set_float(self, field, value):
+		"""Set internal field float value. npc.obj_set_float(int[obj_f_*]: field, float: value) -> None"""
+		return
+	
 	def obj_set_obj(self, field, value):
 		"""Set internal field obj value. npc.obj_set_obj(int[obj_f_*]: field, PyObjHandle: value) -> int"""
 		return 1

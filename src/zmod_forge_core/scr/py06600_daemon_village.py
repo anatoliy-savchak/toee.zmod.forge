@@ -22,7 +22,7 @@ def san_use(attachee, triggerer):
 	return ctrl_daemon2.do_san_use(attachee, triggerer, module_consts.MAP_ID_VILLAGE, cs())
 
 def cs():
-	o = utils_storage.obj_storage_by_id(VILLAGE_DAEMON_SCRIPT_ID)
+	o = utils_storage.obj_storage_by_id(VILLAGE_DAEMON_ID)
 	if (not o): return None
 	if (CtrlVillage.get_name() in o.data):
 		result = o.data[CtrlVillage.get_name()]
@@ -38,9 +38,10 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 
 	def place_encounters_initial(self):
 		#self.generate_animals()
-		#self.generate_wanderers()
-		self.place_merchants()
-		self.place_tavern()
+		self.generate_wanderers()
+		#self.place_merchants()
+		#self.place_tavern()
+		self.generate_people()
 
 		return
 
@@ -103,6 +104,35 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 			x, y = py06601_village_populace.VillagePlaces.get_random_sqare_place()
 			npc, ctrl = self.create_npc_at(utils_obj.sec2loc(x, y), py06601_village_populace.CtrlVillageRandomWanderer, const_toee.ROT02, "wanderers", "person{}".format(num), None, 0, 1)
 			ctrl.make_day_route(npc)
+			print('obj_f_speed_walk: {} for {}'.format(npc.obj_get_float(toee.obj_f_speed_walk), npc))
+			npc.obj_set_float(toee.obj_f_speed_walk, 0.5)
+			print('obj_f_speed_walk CHECK: {} vs {} for {}'.format(npc.obj_get_int(toee.obj_f_speed_walk), npc.obj_get_float(toee.obj_f_speed_walk), npc))
+			
+			# import py06600_daemon_village, const_animate
+			# py06600_daemon_village.cs().monsters.values()[0].get_npc().obj_set_float(toee.obj_f_speed_walk, 0.6)
+			# npc = py06600_daemon_village.cs().monsters.values()[0].get_npc() 
+			#npc.anim_goal_use_object(OBJ_HANDLE_NULL, 40, npc.location, 0)
+			# npc.anim_goal_use_object(npc, 40, npc.location, 0)
+			# npc.anim_goal_use_object(game.leader, 51, game.leader.location, 0) -- rotate
+			# anim_goal_interrupt
+			# npc.anim_goal_use_object(game.leader, 26, game.leader.location, 0)
+			# npc.anim_goal_animate(64) = drop down
+			# npc.anim_goal_animate(64 + const_animate.NormalAnimType.SkillSearch) # 112
+			# wpn = game.obj_create(4036, npc.location, 0, 0)
+			# npc.item_wield(wpn, item_wear_weapon_primary)
+			# npc.turn_towards(game.leader)
+			# wpn = npc.item_worn_at(item_wear_weapon_primary)
+			# npc.anim_goal_animate(const_animate.WeaponAnim.RightAttack3)
+			
+			break
+		return
+
+	def generate_people(self):
+		npc, ctrl = self.create_npc_at(utils_obj.sec2loc(483, 498), py06601_village_populace.CtrlVillageManCustomerWeaponPicker, const_toee.ROT05, "wanderers", "person_customer_01", None, 0, 1)
+
+		npc2, ctrl = self.create_npc_at(utils_obj.sec2loc(483, 500), py06601_village_populace.CtrlVillageManRandom, const_toee.ROT11, "wanderers", "person_customer_02", None, 0, 1)
+		npc.obj_set_obj(toee.obj_f_last_hit_by, npc2)
+		
 		return
 
 	def place_tavern(self):
@@ -120,3 +150,18 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 		self.create_npc_at(utils_obj.sec2loc(503, 477), py14712_wizard.CtrlVillageWizard, const_toee.ROT02, "merchant", "wizard", None, 0, 1)
 		self.create_npc_at(utils_obj.sec2loc(494, 506), py14713_priest.CtrlVillagePriest, const_toee.ROT11, "merchant", "priest", None, 0, 1)
 		return
+
+	def do_san_use(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		print("village san_use id: {}, nameid: {}".format(attachee.id, attachee.name))
+
+		#san_use id: P_000001D4_000001FE_00000000_00001392, nameid: 1814
+		if attachee.id == 'P_000001D3_000001FE_00000000_00001392':
+			toee.game.fade_and_teleport(
+				module_consts.TRAVEL_TIME_VILLAGE_TO_ROAD1, 0, 0, 
+				module_consts.MAP_ID_ROAD1, 
+				module_consts.ROAD1_ENTRY_COORDS_NORTH[0], 
+				module_consts.ROAD1_ENTRY_COORDS_NORTH[1]
+				)
+
+		return toee.RUN_DEFAULT

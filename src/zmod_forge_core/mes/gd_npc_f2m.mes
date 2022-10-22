@@ -1,0 +1,230 @@
+// These are general NPC messages, said by female NPC's to male PC's
+
+// NPC would like to sell something to the PC
+{1100}{I'll sell that to you for some gold.}
+
+// NPC won't sell to the PC
+{1200}{I won't sell that to you.}
+
+// NPC would like to buy something from the PC
+{1300}{I'll buy that from you for some gold.}
+
+// NPC will not buy from the PC
+{1400}{I do not want to buy that from you.}
+
+// NPC has died
+{1500}{Aaaaargh!}
+{1501}{Farewell everyone!}
+{1502}{Avenge me!}
+{1503}{Please resurrect me.}
+{1504}{Bury me with my stuff.}
+
+// NPC is acknowledging an order from the PC
+{2100}{OK.}
+{2101}{OK, @pcname@.}
+{2102}{Will do.}
+{2103}{Will do, @pcname@.}
+{2104}{It is as good as done.}
+{2105}{It is as good as done, @pcname@.}
+{2106}{Right.}
+{2107}{Right, @pcname@.}
+{2108}{Of course.}
+{2109}{Of course, @pcname@.}
+{2110}{Yes.}
+{2111}{Already done.}
+{2112}{Anything else?}
+{2113}{Is that all?}
+
+
+// NPC cannot acknowledge an order from the PC
+{2200}{I cannot do that.}
+{2201}{I will not be doing that.}
+{2202}{I don't think so.}
+{2203}{Certainly not.}
+{2204}{I'm afraid not.}
+{2205}{Under no circumstances.}
+{2206}{I think not.}
+{2207}{I am not about to do that.}
+{2208}{You do it.}
+{2209}{I don't want to do that.}
+{2210}{No.}
+{2211}{I got a bad feeling about this.}
+{2212}{There are some things I just will not do.}
+{2213}{That is not why I signed on here.}
+{2214}{That is not my job.}
+{2215}{I have to say no.}
+{2216}{You cannot order me to do that.}
+{2217}{Get someone else to do your dirty work.}
+{2218}{You cannot make me do that.}
+
+// NPC was accidentally hit by the PC
+{2300}{Hey! Watch it!}
+{2301}{You hit me!}
+{2302}{Watch where you aim!}
+{2303}{That had better not happen again!}
+{2304}{Who are we fighting here, anyways?}
+{2305}{Excuse me, sir, but the enemy is OVER THERE!}
+{2306}{Did you HAVE to do that?}
+{2307}{If that is your best, I have a BAD feeling about this.}
+{2308}{It is a good thing I like you, friend.}
+{2309}{Ouch!}
+{2310}{Whoa! Hold it! I'm on your side. Remember?}
+{2311}{Hey!!! Watch your aim!}
+{2312}{Are you sure you know what you're doing?}
+
+// NPC witnesses PC critical hit
+{2400}{Nice one!}
+{2401}{That will make them think!}
+{2402}{Impressive!}
+{2403}{Great hit!}
+{2404}{Your combat skills are most effective, sir.}
+{2405}{Time to die!}
+{2406}{That will teach them some manners, @pcname@!}
+{2407}{You have quite the way of dealing out the damage, @pcname@!}
+{2408}{That's the way to put the hurt on them.}
+{2409}{That was quite the painful blow, @pcname@. Quite impressive!}
+{2410}{Quite impressive, sir!}
+
+// NPC witnesses PC critical miss
+{2500}{You sure you know what you are doing?}
+{2501}{That was damned pitiful, if I do say so myself.}
+{2502}{Are you ready to be serious, now, @pcname@?}
+{2503}{This is a serious situation, sir, not a time for your jests.}
+{2504}{I don't think it works like that, boss.}
+{2505}{That's not the way it's done, @pcname@.}
+{2506}{I pray you are not presently doing your best.}
+
+// The NPC is fleeing from a combatant
+{3000}{Help!}
+{3001}{Help! Help! Help!}
+{3002}{I must flee!}
+{3003}{Oh no!}
+{3004}{Guards! Guards!}
+{3005}{Please, the pain! Show mercy!}
+{3006}{I give up!}
+{3007}{AAAAAGH!}
+{3008}{I've had enough of this.}
+{3009}{Please don't kill me!}
+{3010}{Aiee!}
+{3011}{You win!}
+{3012}{By the gods, show me mercy!}
+{3013}{Please, show me mercy!}
+{3014}{Retreat! Retreat!}
+{3015}{Let me go! Please!}
+{3016}{Please don't hurt me anymore!}
+{3017}{Leave me alone!}
+{3018}{Leave me be!}
+{3019}{I'll not bother you any more! Just let me go!}
+
+// 3100's WARNING
+{3100}{This doesn't look very safe.}
+
+// 3200's NPC to handle a skill he/she is better suited for
+{3200}{Let me handle that for you.}
+{3201}{Here. I can do that.}
+{3202}{That might suit might talents better.}
+
+// 3300's NPC is near death
+{3300}{I need a heal quickly.}
+{3301}{Someone, help me!}
+{3302}{This looks like the end for me.}
+
+// 3400's NPC is carrying too much
+{3400}{I cannot carry anything more.}
+{3401}{I have too much stuff.}
+{3402}{All these things are slowing me down.}
+
+// 3500's NPC leader has died
+{3500}{No! This cannot be!}
+{3501}{Everyone is dying!}
+{3502}{Alas, he is dead.}
+
+// 3600's NPC charges into combat
+{3600}{To the death!}
+
+// 3700's NPC is critically hit
+{3700}{That hurt!}
+
+// 3800's NPC discovers a chest with a lot of loot
+{3800}{Look at all that treasure!}
+
+// 3900's NPC enters a new area
+{3900}{This doesn't look like a nice place.}	// reserved
+{3901}{What a quaint little village!}		// Hommlet
+{3902}{This place is just a ruined mess.}		// Moathouse
+{3903}{What a filthy little thorp!}		// Nulb
+{3904}{This place feels strange.}		// Temple exterior
+{3905}{A terrible battle must have taken place here.}		// Emridy Meadows
+{3906}{It looks like there would be good fishing over at that river.}		// Imerydis Run
+{3907}{That farmhouse looks deserted.}		// Abandoned farmhouse
+{3908}{Oh look, back above ground. This must have been a secret entrance.}		// Cave entrance to Moathouse
+{3909}{I'm sure nothing friendly lives in these caves.}		// Ogre Caves
+{3910}{Such fine quality wood out here.}		// Deklo Grove
+{3911}{Have we arrived in Hell itself?}		// Fire node
+{3912}{This must be some watery alternate plane.}		// Water node
+{3913}{That's a long way down!}		// Air node
+{3914}{It feels as if we've gone somewhere deep underground.}		// Earth node
+
+// 4000's NPC encounters a boss monsters
+{4000}{That doesn't look good!}
+{4001}{Maybe we should get out of here!}
+{4002}{By the nine hells, what is that?!}
+
+// 4100's Certain scenery in the game is tagged for comment
+{4100}{What do you suppose that is?}
+{4101}{Those doors looked like they are keeping something in.}		// Bronze doors
+{4102}{That minotaur looks strangely life-like}		// Minotaur statue
+{4103}{What an odd arrangement of statues.}		// Hall of statues
+{4104}{This verdigris covers everything in here!}		// Hall of Verdigris
+{4105}{These stairs sure go down a long ways.}		// Stairs behind Lubash
+{4106}{Strange place for a vampire burial. Somthing feels amiss.}		// Thrommel's room
+{4107}{That pyramid must be some sore of altar for this temple.}		// Earth Temple
+{4108}{It's hot in here. This must be the Fire Temple.}		// Fire Temple
+{4109}{Looks too dangerous to go for a swim.}		// Water Temple
+{4110}{That hole up there might be another way in!!}		// Air Temple
+{4111}{That's some magnificent throne!}		// Throne
+{4112}{I feel like I'm being watched down here.}		// Greater Temple
+{4113}{There's an awful lot of ooze and fungus down here.}	// Zuggtmoy's level
+
+// 4200's NPC is bored waiting for the player to do something
+{4200}{Let's get moving!}
+{4201}{What's going on?}
+{4202}{I'm bored.}
+{4203}{I want some action!}
+
+// Using the power of a deity
+{4300}{I rule!}
+{4301}{By the thirteen staves of Boccob!}
+{4302}{Corellon protect me!}
+{4303}{May Ehlonna warm your backs.}
+{4304}{Blood for Erythnul!}
+{4305}{Fharlanghn!!}
+{4306}{By Garl's sparkling wit!}
+{4307}{GRRUUUUUUMMMMMSSSSSHHHH!!}
+{4308}{None may doubt the valor of Heironeous!}
+{4309}{Hextor's maw, on our foes, clamp shut!}
+{4310}{By the sinewy thews of Kord!}
+{4311}{Moradin shall forge our victory!}
+{4312}{Nerull shall reap your flesh!}
+{4313}{By the groves of Obad-Hai!}
+{4314}{Olidammara laughs this day!}
+{4315}{Witness the radiance of Pelor!}
+{4316}{Cuthbert shield me and destory my foes!}
+{4317}{By the eye and hand of Vecna!}
+{4318}{Praise to the Ruby Sorceress!}
+{4319}{By Yondalla's shining skirts!}
+{4320}{By the Old Gods!}
+{4321}{By the fungus queen!}
+{4322}{The Old One shall feast on your bones!}
+{4323}{The webs of Lolth shall enslave you!}
+{4324}{To the glory of the open sea!}
+{4325}{By Norebo!}
+{4326}{By Pyremius!}
+{4327}{By Ralishaz!}
+
+
+// NPC barters with followers first
+{4400}{One moment, please, this person was ahead of you. [She turns away for a moment and then comes back to you.] Ok, I am ready to barter.}
+{4401}{I must help this other customer first. [She turns away and then comes back to you.] OK, let us barter.}
+{4402}{Please wait your turn. [She turns and barters with your follower(s) and then turns back to you.] Now, let us barter.}
+{4403}{I will help this other customer first. [She turns away for a moment and then comes back to you.] I am ready to barter with you now.}

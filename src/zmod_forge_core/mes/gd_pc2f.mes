@@ -1,0 +1,176 @@
+// These are the general messages said by a PC to a female NPC
+
+
+// Yes messages go between 1 and 99
+{1}{Yes.}
+{2}{Yes!}
+{3}{Definitely.}
+{4}{Of course.}
+{5}{Yes, dear lady.}
+{6}{Yes, madam.}
+{7}{Yes, good woman.}
+{8}{Yes, miss.}
+{9}{Definitely, madam.}
+{10}{Of course, madam.}
+{11}{Yes, assuredly, madam.}
+{12}{Yes, most assuredly, madam.}
+{13}{Yes, of course, dear lady.}
+{14}{Yes, of course, dear woman.}
+{15}{Yes, of course, good woman.}
+{16}{Yes, of course, madam.}
+{17}{Yes, of course, miss.}
+{18}{Yes, of course.}
+{19}{Definitely, good woman.}
+{20}{Of course, miss.}
+
+
+
+// No messages go between 100 and 199
+{100}{No.}
+{101}{I do not think so.}
+{102}{I am afraid not.}
+{103}{No!}
+{104}{Um, no.}
+{105}{Certainly not.}
+{106}{I think not.}
+{107}{No, madam.}
+{108}{I think not, miss.}
+{109}{Hardly, no.}
+{110}{No, miss.}
+{111}{I am afraid not, miss.}
+{112}{No! Miss!}
+{113}{Um, no, madam.}
+{114}{Certainly not, madam.}
+{115}{I think not, madam.}
+{116}{Never.}
+{117}{I am afraid not, miss.}
+{118}{No, miss.}
+
+
+// Sorry messages go between 200 and 299
+{200}{I am sorry.}
+{201}{Sorry.}
+{202}{I am very sorry.}
+{203}{I apologize.}
+{204}{You have my apologies.}
+{205}{My apologies.}
+{206}{My sincere apologies.}
+{207}{My heartfelt regrets.}
+{208}{My regrets.}
+{209}{My heartfelt apologies.}
+{210}{I am genuinely sorry.}
+{211}{My candid apologies.}
+{212}{My deepest apologies.}
+{213}{I am sorry, miss.}
+{214}{Sorry, miss.}
+{215}{I am very sorry, my dear.}
+{216}{I apologize, miss.}
+{217}{You have my apologies, miss.}
+{218}{My apologies, madam.}
+{219}{My sincere apologies, madam.}
+{220}{My heartfelt apologies, madam.}
+{221}{I am genuinely sorry, miss.}
+{222}{My candid apologies, madam.}
+{223}{My deepest apologies, miss.}
+{224}{Please, accept my apologies, madam.}
+{225}{So very sorry, miss.}
+
+
+// Barter messages go between 300 and 399
+{300}{Let us barter.}
+{301}{Let us barter, miss.}
+{302}{Let us barter, my good woman.}
+{303}{Let's barter.}
+{304}{Have anything you want to buy or sell?}
+{305}{Interested in trading?}
+{306}{Interested in trading, dear lady?}
+{307}{Interested in trading, miss?}
+{308}{Can I look at your trade goods?}
+{309}{Can I look at your trade goods, miss?}
+{310}{Let us trade.}
+{311}{Let us trade, miss.}
+{312}{Let us trade, dear lady.}
+{313}{Let us trade, lass.}
+{314}{Shall we barter?}
+{315}{Shall we barter, dear lady?}
+{316}{Shall we barter, miss?}
+
+
+
+
+// Exit messages go between 400 and 499
+{400}{Goodbye.}
+{401}{Bye.}
+{402}{I'll be leaving now.}
+{403}{Farewell.}
+{404}{I must be going.}
+{405}{I must be off.}
+{406}{I'll be going now.}
+{407}{Good day.}
+{408}{Good day to you.}
+{409}{I must depart.}
+{410}{I will be departing now.}
+{411}{I will be leaving now.}
+{412}{I'll be off, then.}
+{413}{I am leaving now.}
+{414}{Good day to you.}
+{415}{I must go. Good day.}
+{416}{Goodbye.}
+{417}{Farewell.}
+{418}{I'll be going now.}
+{419}{I must go.}
+{420}{Good day.}
+{421}{Goodbye.}
+{422}{I must depart.}
+{423}{I am departing.}
+{424}{I must go. Good day to you.}
+{425}{I will go now.}
+{426}{I must be off.}
+{427}{I'll be leaving now.}
+{428}{Good day to you.}
+
+
+
+// Continue messages goes between 600 and 699
+{600}{[continue]}
+
+
+
+// Forget it messages go between 800 and 899
+{800}{Forget it.}
+{801}{Never mind.}
+{802}{Never mind, ma'am.}
+{803}{I changed my mind, madam.}
+{804}{I have changed my mind.}
+{805}{I have changed my mind, madam.}
+{806}{Forget it, ma'am.}
+
+
+// Request to ask more questions go between 1500 and 1599
+{1500}{Can I ask some more questions?}
+{1501}{May I ask more questions?}
+{1502}{Can I ask you some other questions?}
+{1503}{Madam, may I ask you some other questions?}
+{1504}{May I impose upon you to answer more questions?}
+{1505}{Perhaps you can answer a few more questions?}
+{1506}{Perhaps, madam, you can answer a few more questions?}
+{1507}{Perhaps you will allow me a few more questions?}
+{1508}{Will you allow me a few more questions?}
+{1509}{Do you have time for a few more questions...?}
+{1510}{If I may, I have a few more questions.}
+{1511}{Just a few more questions, please.}
+{1512}{Just a few more questions.}
+{1513}{Might I ask you a few more questions?}
+{1514}{Do you have the time for more questions?}
+
+
+
+// Story state messages go between 1700 and 1799
+{1700}{I am new around here. What should I do?}
+{1701}{What should I do about the Moathouse?}
+{1702}{I have cleared out the Moathouse. What now?}
+{1703}{What should I do in Nulb?}
+{1704}{What should I do about the Temple?}
+{1705}{What should I do about the evil factions inside the Temple?}
+{1706}{What should I do about Zuggtmoy? She is trapped inside the Temple.}
+{1707}{I have taken care of the Temple. Now what?}

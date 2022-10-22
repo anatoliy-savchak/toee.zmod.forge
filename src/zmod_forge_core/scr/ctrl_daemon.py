@@ -18,15 +18,14 @@ class CtrlDaemon(object):
 
 	@classmethod
 	def ensure(cls, npc):
-		data = utils_storage.obj_storage(npc).data
-		ctrl = None
-		if (cls.get_name() in data):
-			ctrl = data[cls.get_name()]
-		else:
+		o = utils_storage.obj_storage(npc)
+		ctrl = o.data.get(cls.get_name())
+		if not ctrl:
 			ctrl = cls()
 			ctrl.created(npc)
-			o = utils_storage.obj_storage(npc)
+			
 			o.data[cls.get_name()] = ctrl
+			print('daemon ensured by name: {}, ctrl: {}, o: {}, o.data: {}, id: {}'.format(cls.get_name(), ctrl, o, o.data, npc.id))
 			o.alias = cls.get_alias()
 			map_default = ctrl.get_map_default()
 			if (map_default):

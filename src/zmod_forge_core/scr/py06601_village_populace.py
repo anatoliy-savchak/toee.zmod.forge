@@ -53,7 +53,7 @@ class CtrlVillagePersonRandom(ctrl_behaviour.CtrlBehaviour):
 		hairStyle.update_npc(npc)
 
 		# need to recheck
-		if (0):
+		if (1):
 			height = 100
 			if (gender == toee.gender_female):
 				height = int(160/180*100 - 20 + toee.game.random_range(1, 20))
@@ -432,3 +432,187 @@ class CtrlVillageRandomWandererPiousWoman(CtrlVillageRandomWandererPious):
 	@classmethod
 	def get_proto_id(cls):
 		return 14703
+
+class Scene:
+	TEXT_COLOR_NORMAL = toee.tf_yellow
+
+	def do_after_created(self, npc):
+		self.scene_stage_next = '0'
+		self.scene_stage_heartbeats_left = 0
+		self.scene_item_id1 = ''
+		self.scene_item_proto1 = 0
+		return
+
+	def run_scenes(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		if self.scene_stage_heartbeats_left > 0:
+			self.scene_stage_heartbeats_left += -1
+			return
+
+		result = None
+		if self.scene_stage_next:
+			print('Playing scene: {} for {}'.format(self.scene_stage_next, npc))
+			scene_func = None
+			try:
+				scene_func = getattr(self, 'scene_' + self.scene_stage_next)
+			except AttributeError:
+				print('Scene not found: {}'.format(self.scene_stage_next))
+				self.scene_stage_next = ''
+				pass
+			if scene_func:
+				sc = self.scene_stage_next
+				self.scene_stage_next = ''
+				result = scene_func(npc, sc)
+
+		return result
+
+	def set_next_scene(self, next_name, after_heartbeats):
+		self.scene_stage_next = next_name
+		self.scene_stage_heartbeats_left = after_heartbeats
+		return
+
+	def talk_normal(self, npc, text):
+		npc.float_text_line(text, toee.tf_yellow)
+		return
+
+	def talk_excited(self, npc, text):
+		npc.float_text_line(text, toee.tf_white)
+		return
+
+	def talk_mocking(self, npc, text):
+		npc.float_text_line(text, toee.tf_green)
+		return
+
+class SceneVillageManCustomerWeaponPicker(Scene):
+	def do_after_created(self, npc):
+		Scene.do_after_created(self, npc)
+		self.weapons = None
+		return
+
+	def check_weapons(self):
+		if not self.weapons:
+			#self.weapons = [const_proto_weapon.PROTO_LONGSWORD, const_proto_weapon.PROTO_BATTLEAXE, const_proto_weapon.PROTO_RAPIER, const_proto_weapon.PROTO_WEAPON_WARHAMMER]
+			self.weapons = const_proto_list_weapons.PROTOS_WEAPON_ALL[:]
+		return
+
+	def scene_0(self, npc, scene_name):
+		self.set_next_scene('look_initial', 2)
+		return
+
+	def scene_look_initial(self, npc, scene_name):
+		self.scene_look(npc, scene_name)
+		return
+
+	def scene_look(self, npc, scene_name):
+		text = 'Hey, take a look at that!' if scene_name == 'look_initial' else "What's that now?"
+		self.talk_excited(npc, text)
+
+		if not self.weapons:
+			self.check_weapons()
+
+		if self.scene_item_proto1 in self.weapons:
+			self.weapons.remove(self.scene_item_proto1)
+
+		if not self.weapons:
+			self.check_weapons()
+
+		if self.scene_item_id1:
+			wpn = toee.game.get_obj_by_id(self.scene_item_id1)
+			if wpn:
+				wpn.destroy()
+
+		self.scene_item_proto1 = self.weapons[toee.game.random_range(0, len(self.weapons)-1)]
+		self.weapons.remove(self.scene_item_proto1)
+
+		wpn = toee.game.obj_create(self.scene_item_proto1, npc.location)
+		wpn.move(npc.location, 0, 25)
+		wpn.item_flag_set(toee.OIF_NO_NPC_PICKUP) 
+		wpn.item_flag_set(OIF_STOLEN)
+		wpn.item_flag_set(OIF_WONT_SELL)
+		wpn.item_flag_set(OIF_NO_PICKPOCKET)
+		self.scene_item_id1 = wpn.id
+		npc.anim_goal_animate(64 + const_animate.NormalAnimType.Examine)
+
+		self.set_next_scene('announce_pickup', 2)
+		return
+
+	def scene_announce_pickup(self, npc, scene_name):
+		self.talk_normal(npc, 'Let me try it.')
+		self.set_next_scene('pickup_animation', 2)
+		return
+
+	def scene_pickup_animation(self, npc, scene_name):
+		npc.anim_goal_animate(64 + const_animate.NormalAnimType.SkillDisableDevice)
+		self.set_next_scene('pickup', 2)
+		return
+
+	def scene_pickup(self, npc, scene_name):
+		wpn = toee.game.get_obj_by_id(self.scene_item_id1)
+		if wpn:
+			npc.item_wield(wpn, toee.item_wear_weapon_primary)
+		self.set_next_scene('try', 2)
+		return
+
+	def scene_try(self, npc, scene_name):
+		npc.anim_goal_animate(const_animate.WeaponAnim.RightAttack)
+		self.set_next_scene('boast', 4)
+		return
+
+	def scene_boast(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		self.talk_excited(npc, 'Pretty cool, right?')
+
+		baddy = npc.obj_get_obj(toee.obj_f_last_hit_by)
+		if baddy:
+			self.set_next_scene('baddy_mocking', 4)
+		else:
+			self.set_next_scene('giveup', 6)
+		return
+
+	def scene_baddy_mocking(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		baddy = npc.obj_get_obj(toee.obj_f_last_hit_by)
+		if baddy:
+			self.talk_mocking(baddy, 'You look like idiot.')
+			#baddy.anim_goal_animate(64)
+			self.set_next_scene('giveup', 6)
+		return
+
+	def scene_giveup(self, npc, scene_name):
+		self.talk_normal(npc, 'All right, screw it.')
+		wpn = npc.item_worn_at(toee.item_wear_weapon_primary)
+		if wpn:
+			npc.anim_goal_animate(64 + const_animate.NormalAnimType.SkillDisableDevice)
+			wpn.destroy()
+		self.set_next_scene('look', 10)
+		return
+
+class CtrlVillageManCustomerWeaponPicker(CtrlVillageManRandom, SceneVillageManCustomerWeaponPicker):
+	
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		super(CtrlVillageManCustomerWeaponPicker, self).after_created(npc)
+		npc.scripts[const_toee.sn_heartbeat] = VILLAGE_NPC_DIALOG
+		self.do_after_created(npc)
+		return
+
+	def heartbeat(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		assert isinstance(triggerer, toee.PyObjHandle)
+
+		near = False
+		for pc in toee.game.party:
+			if pc.distance_to(attachee) < 30:
+				near = True
+				break
+		if near:
+			can_see = False
+			for pc in toee.game.party:
+				if pc.has_los(attachee):
+					can_see = True
+					break
+
+			if can_see:
+				self.run_scenes(attachee)
+		return
+

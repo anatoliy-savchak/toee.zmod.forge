@@ -161,7 +161,10 @@
     <Compile Include="zmod_forge_core\scr\py06123_event_object_fireplace.py" />
     <Compile Include="zmod_forge_core\scr\py06214_doors_autodestroy.py" />
     <Compile Include="zmod_forge_core\scr\py06600_daemon_village.py" />
-    <Compile Include="zmod_forge_core\scr\py06601_village_npc.py" />
+    <Compile Include="zmod_forge_core\scr\py06602_village_npc.py" />
+    <Compile Include="zmod_forge_core\scr\py06601_village_populace.py" />
+    <Compile Include="zmod_forge_core\scr\py06609_daemon_road1.py" />
+    <Compile Include="zmod_forge_core\scr\py06610_daemon_citadel_lv1.py" />
     <Compile Include="zmod_forge_core\scr\py14713_priest.py" />
     <Compile Include="zmod_forge_core\scr\py14764_npc_portal.py" />
     <Compile Include="zmod_forge_core\scr\py04000_monster_manual1_p1.py" />
@@ -358,6 +361,7 @@
     <Content Include="zmod_forge_core\dlg\00406Game_Portal.dlg" />
     <Content Include="zmod_forge_core\dlg\14710_smith.dlg" />
     <Content Include="zmod_forge_core\dlg\14711_smith_wife.dlg" />
+    <Content Include="zmod_forge_core\dlg\06602_village_npc.dlg" />
     <Content Include="zmod_forge_core\dlg\14713_priest.dlg" />
     <Content Include="zmod_forge_core\dlg\14764_npc_portal.dlg" />
     <Content Include="zmod_forge_core\dlg\14712_wizard.dlg" />

@@ -27,10 +27,11 @@ def do_san_new_map(attachee, triggerer, map_id, cls):
 def do_san_first_heartbeat(attachee, triggerer, map_id, cls):
 	assert isinstance(attachee, toee.PyObjHandle)
 	assert isinstance(map_id, int)
-	#print(attachee.id)
+	print(attachee.id)
 	#debug.breakp("san_first_heartbeat")
 	startup_zmod.zmod_templeplus_config_apply()
 	if (attachee.map != map_id): toee.RUN_DEFAULT
+	print('cls.ensure(attachee)')
 	ctrl = cls.ensure(attachee)
 	ctrl.place_encounters(0)
 	return toee.RUN_DEFAULT
@@ -63,7 +64,7 @@ def do_san_use(attachee, triggerer, map_id, ctrl):
 	assert isinstance(attachee, toee.PyObjHandle)
 	assert isinstance(ctrl, CtrlDaemon2)
 	assert isinstance(map_id, int)
-	print("san_use id: {}, nameid: {}".format(attachee.id, attachee.name))
+	print("san_use id: {}, nameid: {}, map_id: {}".format(attachee.id, attachee.name, attachee.map))
 	if (attachee.map != map_id): toee.RUN_DEFAULT
 	if (ctrl):
 		return ctrl.do_san_use(attachee, triggerer)
