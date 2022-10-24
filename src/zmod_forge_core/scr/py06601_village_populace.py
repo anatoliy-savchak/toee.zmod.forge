@@ -1,6 +1,6 @@
 import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod, utils_npc, const_animate
 import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls, const_proto_list_cloth
-import random, debug
+import random, debug, math
 
 VILLAGE_NPC_DIALOG = 6601
 
@@ -64,7 +64,6 @@ class CtrlVillagePersonRandom(ctrl_behaviour.CtrlBehaviour):
 
 	def dress_up(self, npc):
 		# create inventory
-		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_CIRCLET_HOODLESS, npc, 1, 1)
 		robe = toee.game.random_range(const_proto_cloth.PROTO_CLOTH_GARB_VILLAGER_BLUE, const_proto_cloth.PROTO_CLOTH_GARB_VILLAGER_RED)
 		if (robe):
 			utils_item.item_create_in_inventory(robe, npc, 1, 1)
@@ -72,6 +71,7 @@ class CtrlVillagePersonRandom(ctrl_behaviour.CtrlBehaviour):
 			cloak = const_proto_list_cloth.PROTO_CLOTH_CLOAKS[toee.game.random_range(0, len(const_proto_list_cloth.PROTO_CLOTH_CLOAKS)-1)]
 			if (cloak):
 				utils_item.item_create_in_inventory(cloak, npc, 1, 1)
+				utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_CIRCLET_HOODLESS, npc, 1, 1)
 		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_LEATHER_BOOTS_BLACK, npc, 1, 1)
 		npc.item_wield_best_all()
 		return
@@ -483,6 +483,23 @@ class Scene:
 		npc.float_text_line(text, toee.tf_green)
 		return
 
+	def is_play_viable(self, npc):
+		# only if near 30 ft and is visible
+		near = False
+		for pc in toee.game.party:
+			if pc.distance_to(npc) < 30:
+				near = True
+				break
+		if near:
+			can_see = False
+			for pc in toee.game.party:
+				if pc.has_los(npc):
+					can_see = True
+					break
+
+			return can_see
+		return False
+
 class SceneVillageManCustomerWeaponPicker(Scene):
 	def do_after_created(self, npc):
 		Scene.do_after_created(self, npc)
@@ -600,19 +617,44 @@ class CtrlVillageManCustomerWeaponPicker(CtrlVillageManRandom, SceneVillageManCu
 		assert isinstance(attachee, toee.PyObjHandle)
 		assert isinstance(triggerer, toee.PyObjHandle)
 
-		near = False
-		for pc in toee.game.party:
-			if pc.distance_to(attachee) < 30:
-				near = True
-				break
-		if near:
-			can_see = False
-			for pc in toee.game.party:
-				if pc.has_los(attachee):
-					can_see = True
-					break
-
-			if can_see:
-				self.run_scenes(attachee)
+		if self.is_play_viable(attachee):
+			self.run_scenes(attachee)
 		return
 
+class CtrlVillageRandomRunOffAt(CtrlVillageManRandom):
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		super(CtrlVillageRandomRunOffAt, self).after_created(npc)
+		self.near_loc = (0, 0)
+		self.near_threshhold = 2
+		self.is_running_off = False
+		npc.scripts[const_toee.sn_heartbeat] = VILLAGE_NPC_DIALOG
+		return
+
+	def heartbeat(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		assert isinstance(triggerer, toee.PyObjHandle)
+
+		if self.is_running_off:
+			attachee.destroy()
+			return
+
+		if self.near_loc and self.near_loc[0]:
+			loc = utils_obj.loc2sec(attachee.location)
+			matched = (math.fabs(loc[0] - self.near_loc[0]) <= self.near_threshhold)\
+				and (math.fabs(loc[1] - self.near_loc[1]) <= self.near_threshhold)
+			if matched:
+				#print('NEAR LOC DESTROYING {}'.format(attachee))
+				attachee.runoff(attachee.location)
+				#attachee.scripts[const_toee.sn_heartbeat] = 0
+				self.is_running_off = True
+		return toee.RUN_DEFAULT
+
+	@classmethod
+	def get_proto_id(cls):
+		return 14702
+
+class CtrlVillageRandomRunOffAtWoman(CtrlVillageRandomRunOffAt):
+	@classmethod
+	def get_proto_id(cls):
+		return 14703

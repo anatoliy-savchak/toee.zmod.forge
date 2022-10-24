@@ -4,10 +4,15 @@ import logging
 
 def get_ctrl(id):
 	assert isinstance(id, str)
-	ctrl = None
 	storage = utils_storage.obj_storage_by_id(id)
 	if (storage):
-		print(storage.data)
+		return get_ctrl_from_objstorage(storage)
+	return
+
+def get_ctrl_from_objstorage(storage):
+	assert isinstance(storage, utils_storage.ObjectStorage)
+	ctrl = None
+	if (storage):
 		for t in storage.data.iteritems():
 			if (issubclass(type(t[1]), CtrlBehaviour)):
 				ctrl = t[1]

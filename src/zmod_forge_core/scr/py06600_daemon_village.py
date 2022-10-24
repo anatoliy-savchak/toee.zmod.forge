@@ -1,6 +1,6 @@
 import toee, debug, ctrl_daemon, ctrl_daemon2, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
-import module_consts, const_proto_sceneries, utils_locks, utils_toee
+import module_consts, const_proto_sceneries, utils_locks, utils_toee, const_animate
 import py14710_smith, py14711_smith_wife, py14712_wizard, py14713_priest, py06601_village_populace, py06602_village_npc
 
 VILLAGE_DAEMON_SCRIPT_ID = 6600
@@ -17,6 +17,12 @@ def san_heartbeat(attachee, triggerer):
 
 def san_dying(attachee, triggerer):
 	return ctrl_daemon2.do_san_dying(attachee, triggerer, module_consts.MAP_ID_VILLAGE, cs())
+
+def san_destroy(attachee, triggerer):
+	_cs = cs()
+	if _cs:
+		return _cs.do_san_destroy(attachee, triggerer)
+	return
 
 def san_use(attachee, triggerer):
 	return ctrl_daemon2.do_san_use(attachee, triggerer, module_consts.MAP_ID_VILLAGE, cs())
@@ -42,6 +48,7 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 		#self.place_merchants()
 		#self.place_tavern()
 		self.generate_people()
+		self.spawn_walkers()
 
 		return
 
@@ -165,3 +172,59 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 				)
 
 		return toee.RUN_DEFAULT
+
+	def do_san_destroy(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		print("do_san_destroy attachee: {}".format(attachee))
+		objStorage = utils_storage.obj_remove_storage_by_id(attachee.id)
+		ctrl = ctrl_behaviour.get_ctrl_from_objstorage(objStorage)
+		if ctrl:
+			nn = None
+			id = attachee.id
+			for n, m in self.monsters.iteritems():
+				if m.id == id:
+					nn = n
+					break
+			if nn:
+				del self.monsters[nn]
+			
+			if isinstance(ctrl, py06601_village_populace.CtrlVillageRandomRunOffAtWoman):
+				self.spawn_walkers()
+		return toee.RUN_DEFAULT
+
+	def spawn_walkers(self):
+		# walking couple 
+		npc, ctrl = self.create_npc_at(utils_obj.sec2loc(505, 471), py06601_village_populace.CtrlVillageRandomRunOffAt, const_toee.ROT02, "wanderers", "person_walking_01", None, 0, 1)
+		#ctrl.near_loc = (492, 469) debug
+		ctrl.near_loc = (467, 507)
+		if (1):
+			waypoints = list()
+			waypoints.append(utils_npc.Waypoint(500, 470, const_toee.ROT02))
+			waypoints.append(utils_npc.Waypoint(472, 467, const_toee.ROT03))
+			waypoints.append(utils_npc.Waypoint(464, 474, const_toee.ROT05))
+			waypoints.append(utils_npc.Waypoint(465, 490, const_toee.ROT05))
+			waypoints.append(utils_npc.Waypoint(467, 507, const_toee.ROT05, 5000, utils_npc.WaypointFlag.Delay | utils_npc.WaypointFlag.Animate, 64 + const_animate.NormalAnimType.Examine))
+			npc.npc_waypoints_set(waypoints)
+			npc.npc_flag_set(toee.ONF_WAYPOINTS_DAY)
+			npc.npc_flag_set(toee.ONF_WANDERS)
+			npc.npc_flag_set(toee.ONF_WANDERS_IN_DARK)
+			npc.obj_set_float(toee.obj_f_speed_walk, 0.6)
+			npc.scripts[const_toee.sn_destroy] = VILLAGE_DAEMON_SCRIPT_ID
+
+		if (1):
+			npc, ctrl = self.create_npc_at(utils_obj.sec2loc(505, 471), py06601_village_populace.CtrlVillageRandomRunOffAtWoman, const_toee.ROT02, "wanderers", "person_walking_02", None, 0, 1)
+			ctrl.near_loc = (467, 507)
+			if (1):
+				waypoints = list()
+				waypoints.append(utils_npc.Waypoint(500, 470+2, const_toee.ROT02))
+				waypoints.append(utils_npc.Waypoint(472, 467+2, const_toee.ROT03, 1000, utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(464+2, 474, const_toee.ROT05, 1000, utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(465+2, 490, const_toee.ROT05))
+				waypoints.append(utils_npc.Waypoint(467+2, 507, const_toee.ROT05, 5000, utils_npc.WaypointFlag.Delay | utils_npc.WaypointFlag.Animate, 64 + const_animate.NormalAnimType.Examine))
+				npc.npc_waypoints_set(waypoints)
+				npc.npc_flag_set(toee.ONF_WAYPOINTS_DAY)
+				npc.npc_flag_set(toee.ONF_WANDERS)
+				npc.npc_flag_set(toee.ONF_WANDERS_IN_DARK)
+				npc.obj_set_float(toee.obj_f_speed_walk, 0.6)
+				npc.scripts[const_toee.sn_destroy] = VILLAGE_DAEMON_SCRIPT_ID
+		return

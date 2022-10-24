@@ -562,7 +562,7 @@ class PyObjHandle(object):
 	def refresh_turn(self):
 		return
 
-	def runoff(self, loc, off_x, off_y):
+	def runoff(self, loc, off_x = 0, off_y = 0):
 		return
 
 	def rumor_log_add(self, rumor_id):

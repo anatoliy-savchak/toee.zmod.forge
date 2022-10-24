@@ -12,6 +12,9 @@ def obj_storage_by_alias(alias):
 	assert isinstance(alias, str)
 	return Storage.getObjectStorageByAlias(alias)
 
+def obj_remove_storage_by_id(id):
+	return Storage.getObjectStorageByNameRemove(id)
+
 def ca(alias):
 	assert isinstance(alias, str)
 	o = Storage.getObjectStorageByAlias(alias)
@@ -162,6 +165,16 @@ class Storage(object):
 		objStorage = ObjectStorage(name)
 		oo[name] = objStorage
 		return objStorage
+
+	@staticmethod
+	def getObjectStorageByNameRemove(name):
+		ss = Storage()
+		oo = ss.objs
+		if (name in oo):
+			objStorage = oo[name]
+			del oo[name]
+			return objStorage
+		return
 
 	@staticmethod
 	def getObjectStorageByAlias(alias):
