@@ -363,3 +363,14 @@ OSCF_USE_OPEN_WORLDMAP  = 0x1000
 OSCF_ENUM_DICT = {OSCF_NO_AUTO_ANIMATE : "OSCF_NO_AUTO_ANIMATE", OSCF_BUSTED : "OSCF_BUSTED", OSCF_NOCTURNAL : "OSCF_NOCTURNAL", OSCF_MARKS_TOWNMAP : "OSCF_MARKS_TOWNMAP", OSCF_IS_FIRE : "OSCF_IS_FIRE", OSCF_RESPAWNABLE : "OSCF_RESPAWNABLE", OSCF_SOUND_SMALL : "OSCF_SOUND_SMALL", OSCF_SOUND_MEDIUM : "OSCF_SOUND_MEDIUM", OSCF_SOUND_EXTRA_LARGE : "OSCF_SOUND_EXTRA_LARGE", OSCF_UNDER_ALL : "OSCF_UNDER_ALL", OSCF_RESPAWNING : "OSCF_RESPAWNING", OSCF_TAGGED_SCENERY : "OSCF_TAGGED_SCENERY", OSCF_USE_OPEN_WORLDMAP : "OSCF_USE_OPEN_WORLDMAP"}
 
 race_dwarf_gold = 161
+
+# ItemInsertFlags in inventory.h
+IIF_None = 0
+IIF_Allow_Swap = 0x1
+IIF_Use_Wield_Slots = 0x2 # will let the item transfer try to insert in the wielded item slots (note: will not replace if there is already an item equipped!)
+IIF_4 = 0x4 # I think this allows to fall back to unspecified slots
+IIF_Use_Max_Idx_200 = 0x8 # will use up to inventory index 200 (invisible slots)
+IIF_10 = 0x10,
+IIF_Use_Bags = 0x20 # use inventory indices of bags (not really supported in ToEE)
+IIF_40 = 0x40
+IIF_80 = 0x80

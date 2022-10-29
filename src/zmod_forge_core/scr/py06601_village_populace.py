@@ -2,7 +2,7 @@ import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod, u
 import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls, const_proto_list_cloth
 import random, debug, math
 
-VILLAGE_NPC_DIALOG = 6601
+MODULE_SCRIPT_ID = 6601
 
 def san_start_combat(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
@@ -34,7 +34,7 @@ def san_heartbeat(attachee, triggerer):
 class CtrlVillagePersonRandom(ctrl_behaviour.CtrlBehaviour):
 	def after_created(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
-		#npc.scripts[const_toee.sn_dialog] = VILLAGE_NPC_DIALOG
+		#npc.scripts[const_toee.sn_dialog] = MODULE_SCRIPT_ID
 		npc.faction_add(factions_zmod.FACTION_NEUTRAL_NPC)
 		utils_item.item_clear_all(npc)
 
@@ -234,8 +234,8 @@ class CtrlVillageRandomWanderer(CtrlVillagePersonRandom):
 	def after_created(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
 		super(CtrlVillageRandomWanderer, self).after_created(npc)
-		npc.scripts[const_toee.sn_heartbeat] = VILLAGE_NPC_DIALOG
-		npc.scripts[const_toee.sn_dialog] = VILLAGE_NPC_DIALOG
+		npc.scripts[const_toee.sn_heartbeat] = MODULE_SCRIPT_ID
+		npc.scripts[const_toee.sn_dialog] = MODULE_SCRIPT_ID
 		return
 
 	@classmethod
@@ -487,13 +487,15 @@ class Scene:
 		# only if near 30 ft and is visible
 		near = False
 		for pc in toee.game.party:
-			if pc.distance_to(npc) < 30:
+			if pc.distance_to(npc) < 9*5:
 				near = True
 				break
+		return near
+		# unfortunately both can_see and can_sense is related to PC view diraction
 		if near:
 			can_see = False
 			for pc in toee.game.party:
-				if pc.has_los(npc):
+				if pc.can_see(npc):
 					can_see = True
 					break
 
@@ -609,7 +611,7 @@ class CtrlVillageManCustomerWeaponPicker(CtrlVillageManRandom, SceneVillageManCu
 	def after_created(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
 		super(CtrlVillageManCustomerWeaponPicker, self).after_created(npc)
-		npc.scripts[const_toee.sn_heartbeat] = VILLAGE_NPC_DIALOG
+		npc.scripts[const_toee.sn_heartbeat] = MODULE_SCRIPT_ID
 		self.do_after_created(npc)
 		return
 
@@ -628,7 +630,7 @@ class CtrlVillageRandomRunOffAt(CtrlVillageManRandom):
 		self.near_loc = (0, 0)
 		self.near_threshhold = 2
 		self.is_running_off = False
-		npc.scripts[const_toee.sn_heartbeat] = VILLAGE_NPC_DIALOG
+		npc.scripts[const_toee.sn_heartbeat] = MODULE_SCRIPT_ID
 		return
 
 	def heartbeat(self, attachee, triggerer):
@@ -658,3 +660,204 @@ class CtrlVillageRandomRunOffAtWoman(CtrlVillageRandomRunOffAt):
 	@classmethod
 	def get_proto_id(cls):
 		return 14703
+
+class SceneVillageBoyWithDog(Scene):
+	def do_after_created(self, npc):
+		Scene.do_after_created(self, npc)
+		self.thrown_id = None
+		return
+
+	def scene_0(self, npc, scene_name):
+		self.set_next_scene('init', 1)
+		return
+
+	def scene_init(self, npc, scene_name):
+		#dog = npc.obj_get_obj(toee.obj_f_npc_who_hit_me_last)
+		#if dog: npc.turn_towards(dog)
+		self.talk_normal(npc, "You are good boy, aren't ya Scratchy!")
+		self.set_next_scene('throw', 2)
+		return
+
+	def scene_throw(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		#stone = toee.game.obj_create(4647, npc.location)
+		thrown = toee.game.get_obj_by_id(self.thrown_id) if self.thrown_id else toee.game.obj_create(4628, npc.location)
+		npc.item_wield(thrown, toee.item_wear_weapon_primary)
+		self.thrown_id = thrown.id
+		#dog = npc.obj_get_obj(toee.obj_f_npc_who_hit_me_last)
+		#npc.anim_goal_use_object(dog, const_animate.AG_THROW_ITEM, utils_obj.sec2loc(480, 475), 0)
+		#npc.anim_goal_use_object(dog, const_animate.AG_THROW_ITEM, dog.location, 1)
+		#npc.anim_goal_animate(const_animate.WeaponAnim.RightThrow)
+		#decoy = toee.game.obj_create(14304, utils_obj.sec2loc(480, 475))
+		#decoy.object_flag_set(toee.OF_DONTDRAW)
+		#decoy.npc_flag_unset(toee.ONF_KOS)
+		#decoy.npc_flag_set(toee.ONF_NO_ATTACK)
+		#npc.action_perform(toee.D20A_THROW_GRENADE, decoy, decoy.location)
+		#utils_obj.obj_timed_destroy(decoy, 100, 1)
+		#decoy.ai_stop_attacking()
+		#npc.action_perform(toee.D20A_PYTHON_ACTION, dog, utils_obj.sec2loc(482, 475), 3023)
+		npc.action_perform(toee.D20A_PYTHON_ACTION, toee.OBJ_HANDLE_NULL, utils_obj.sec2loc(482, 475), 3023)
+		#npc.action_perform(toee.D20A_THROW_GRENADE, dog, dog.location)
+		self.set_next_scene('fetch', 3)
+		return
+
+	def scene_fetch(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		self.talk_normal(npc, "Fetch!")
+		if self.thrown_id:
+			dog = npc.obj_get_obj(toee.obj_f_npc_who_hit_me_last)
+			if dog:
+				dog_ctrl = ctrl_behaviour.get_ctrl(dog.id)
+				if dog_ctrl:
+					dog_ctrl.fetch_item_id = self.thrown_id
+					dog_ctrl.set_next_scene('fetch', 1)
+		return
+
+class CtrlVillageBoyDogOwner(CtrlVillagePersonRandom, SceneVillageBoyWithDog):
+	@classmethod
+	def get_proto_id(cls):
+		return 14704
+
+	def dress_up(self, npc):
+		# create inventory
+		robe = const_proto_cloth.PROTO_CLOTH_GARB_VILLAGER_BLUE
+		if (robe):
+			utils_item.item_create_in_inventory(robe, npc, 1, 1)
+		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_LEATHER_BROWN, npc, 1, 1)
+		npc.item_wield_best_all()
+		npc.npc_flag_unset(toee.ONF_NO_ATTACK)
+		return
+
+	def make_up(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		hairStyle = utils_npc.HairStyle.from_npc(npc)
+		hairStyle.style = const_toee.hair_style_shorthair
+		hairStyle.color = const_toee.hair_color_blonde
+		hairStyle.update_npc(npc)
+		return
+
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		super(CtrlVillageBoyDogOwner, self).after_created(npc)
+		npc.scripts[const_toee.sn_heartbeat] = MODULE_SCRIPT_ID
+		npc.condition_add("ThrowGN")
+		npc.condition_add("No_Combat")
+		self.do_after_created(npc)
+		return
+
+	def heartbeat(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		assert isinstance(triggerer, toee.PyObjHandle)
+
+		if self.is_play_viable(attachee):
+			self.run_scenes(attachee)
+		return
+
+
+class CtrlVillageBoyDog(CtrlVillageAnimal, Scene):
+	@classmethod
+	def get_proto_id(cls):
+		return 14048
+
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		super(CtrlVillageBoyDog, self).after_created(npc)
+		npc.scripts[const_toee.sn_heartbeat] = MODULE_SCRIPT_ID
+		npc.condition_add("GoalHooks")
+
+		self.do_after_created(npc)
+		self.fetch_item_id = None
+		self.anim_id_pick_up = 0
+		self.anim_id_bring = 0
+		return
+
+	def heartbeat(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		assert isinstance(triggerer, toee.PyObjHandle)
+
+		if self.is_play_viable(attachee):
+			self.run_scenes(attachee)
+		return
+	
+	def GoalResetToIdleAnim(self, npc, unique_action_id, unique_id):
+		#debug.breakp('GoalResetToIdleAnim')
+		if self.anim_id_pick_up == unique_action_id:
+			self.anim_id_pick_up = -1
+			self.set_next_scene('fetch_pick_up', 1)
+		elif self.anim_id_bring == unique_action_id:
+			self.anim_id_pick_up = -1
+			self.set_next_scene('fetch_give', 1)
+		return
+
+	def scene_fetch(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		self.set_next_scene('fetch_go', 1)
+		return
+
+	def scene_fetch_go(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		if self.fetch_item_id:
+			thrown = toee.game.get_obj_by_id(self.fetch_item_id)
+			if thrown:
+				npc.anim_goal_use_object(thrown, const_animate.AG_RUN_NEAR_OBJ, thrown.location, 0)
+				self.anim_id_pick_up = npc.anim_goal_get_new_id()
+				print('dog anim_id_pick_up: {}'.format(self.anim_id_pick_up))
+		
+		return
+
+	def scene_fetch_pick_up(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		if self.fetch_item_id:
+			thrown = toee.game.get_obj_by_id(self.fetch_item_id)
+			if thrown:
+				npc.anim_goal_use_object(thrown, const_animate.AG_ATTEMPT_USE_SKILL_ON, thrown.location, 0)
+				npc.item_get(thrown)
+				self.set_next_scene('fetch_bring', 1)
+		
+		return
+
+	def scene_fetch_bring(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		if self.fetch_item_id:
+			thrown = toee.game.get_obj_by_id(self.fetch_item_id)
+			if thrown:
+				boy = npc.leader_get()
+				if boy:
+					#npc.anim_goal_use_object(boy, const_animate.AG_RUN_NEAR_OBJ, boy.location, 0)
+					loc = utils_npc.npc_find_path_to_target(npc, boy)[0]
+					npc.anim_goal_use_object(toee.OBJ_HANDLE_NULL, const_animate.AG_RUN_TO_TILE, loc, 0)
+					self.anim_id_bring = npc.anim_goal_get_new_id()
+					print('dog anim_id_bring: {}'.format(self.anim_id_bring))
+					self.set_next_scene('fetch_bring_fix', 4)
+		
+		return
+
+	def scene_fetch_bring_fix(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		if self.fetch_item_id:
+			thrown = toee.game.get_obj_by_id(self.fetch_item_id)
+			if thrown:
+				boy = npc.leader_get()
+				if boy:
+					npc.anim_goal_interrupt()
+					npc.anim_goal_use_object(boy, const_animate.AG_RUN_TO_TILE, utils_obj.sec2loc(472, 475), 0)
+					self.anim_id_bring = npc.anim_goal_get_new_id()
+					print('dog anim_id_bring fixed: {}'.format(self.anim_id_bring))
+		return
+		
+	def scene_fetch_give(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		if self.fetch_item_id:
+			thrown = toee.game.get_obj_by_id(self.fetch_item_id)
+			if thrown:
+				boy = npc.leader_get()
+				if boy:
+					npc.turn_towards(boy)
+					boy.item_get(thrown)
+					boy.item_wield(thrown, toee.item_wear_weapon_primary)
+					boy.anim_goal_use_object(npc, const_animate.AG_ATTEMPT_USE_SKILL_ON, npc.location, 0)
+					boy_ctrl = ctrl_behaviour.get_ctrl(boy.id)
+					if boy_ctrl:
+						boy_ctrl.set_next_scene('init', 5)
+		return
+

@@ -320,6 +320,7 @@ class PyObjHandle(object):
 
 	def item_get(self, item, flags = 0):
 		"""npc.item_get(item: PyObjHandle, flags: int[ItemInsertFlags] = 0) -> int"""
+		"will remove the item" # ItemInsertFlags
 		return 1
 
 	def item_flags_get(self):
@@ -349,6 +350,12 @@ class PyObjHandle(object):
 	def item_worn_unwield(self, equip_slot, drop_flag):
 		"""Move item to inventory or drop. npc.item_worn_unwield(int[item_wear_helmet-item_wear_lockpicks]: equip_slot, int: drop_flag) -> none"""
 		return PyObjHandle()
+
+	def item_transfer_to(self, target, item_name_id):
+		return 1
+
+	def item_transfer_to_by_proto(self, target, item_protid):
+		return 1
 
 	def get_weapon_type(self):
 		return wt_gauntlet
@@ -539,6 +546,9 @@ class PyObjHandle(object):
 	def perform_touch_attack(self, target, isMelee):
 		""" Performs touch attack (if isMelee=0 then ranged).	pc.perform_touch_attack(PyObjHandle: target, [bool: isMelee]) -> int"""
 		return 0
+
+	def action_perform(self, act_type, target, dest_locxy):
+		return
 
 	def portal_toggle_open(self):
 		return
@@ -3818,7 +3828,7 @@ D20ADF_SimulsCompatible = 131072
 D20ADF_TargetContainer = 65536
 D20ADF_TargetSingleExcSelf = 8
 D20ADF_TargetSingleIncSelf = 512
-D20ADF_TargetingBasedOnD20Data = 1024
+D20ADF_TargetingBasedOnD20Data = 1024 # only for BardicMusicSongType
 D20ADF_TriggersAoO = 256
 D20ADF_TriggersCombat = 2048
 D20ADF_Unk1 = 1

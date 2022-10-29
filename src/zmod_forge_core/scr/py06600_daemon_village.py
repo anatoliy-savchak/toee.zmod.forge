@@ -49,6 +49,7 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 		#self.place_tavern()
 		self.generate_people()
 		self.spawn_walkers()
+		self.spawn_dogowners()
 
 		return
 
@@ -227,4 +228,16 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 				npc.npc_flag_set(toee.ONF_WANDERS_IN_DARK)
 				npc.obj_set_float(toee.obj_f_speed_walk, 0.6)
 				npc.scripts[const_toee.sn_destroy] = VILLAGE_DAEMON_SCRIPT_ID
+		return
+
+	def spawn_dogowners(self):
+		npc_boy, ctrl = self.create_npc_at(utils_obj.sec2loc(470, 475), py06601_village_populace.CtrlVillageBoyDogOwner, const_toee.ROT09, "wanderers", "person_boy_with_dog", None, 0, 1)
+
+		npc_dog, ctrl = self.create_npc_at(utils_obj.sec2loc(471, 480), py06601_village_populace.CtrlVillageBoyDog, const_toee.ROT11, "wanderers", "person_dog_of_boy", None, 0, 1)
+		if npc_dog:
+			npc_dog.obj_set_obj(toee.obj_f_npc_leader, npc_boy)
+			npc_boy.obj_set_obj(toee.obj_f_npc_who_hit_me_last, npc_dog)
+			# import py06600_daemon_village, const_animate
+			# dog, dog_ctrl = py06600_daemon_village.cs().get_monsterinfo_and_npc_and_ctrl("wanderers", "person_dog_of_boy")
+		
 		return

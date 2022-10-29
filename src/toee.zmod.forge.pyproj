@@ -75,6 +75,7 @@
     <Compile Include="zmod_forge_core\rules\d20_actions\action03018_open_door.py" />
     <Compile Include="zmod_forge_core\rules\d20_actions\action03019_ball_of_fire.py" />
     <Compile Include="zmod_forge_core\rules\d20_actions\action03020_activate_item_swift.py" />
+    <Compile Include="zmod_forge_core\rules\d20_actions\action03023_throw_grenade_noncombat.py" />
     <Compile Include="zmod_forge_core\rules\d20_actions\action03022_knowstone_learn.py" />
     <Compile Include="zmod_forge_core\rules\d20_actions\action03021_forge.py" />
     <Compile Include="zmod_forge_core\rules\d20_actions\action03020_stench.py" />
@@ -226,6 +227,7 @@
     <Compile Include="zmod_forge_core\scr\tpModifiers\improved_natural_armor.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\monster_sole_natural.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\monster_two_handed.py" />
+    <Compile Include="zmod_forge_core\scr\tpModifiers\athrow_grenade_noncombat.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\non_combatant.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\rest_full.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\forge_weapon.py" />

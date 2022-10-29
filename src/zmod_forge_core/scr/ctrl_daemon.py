@@ -97,6 +97,10 @@ class CtrlDaemon(object):
 	def get_map_default(self):
 		return 0
 
+	def _get_monster_key(self, encounter_name, monster_code_name):
+		prefix = '' if not self.get_monster_prefix_default() else '{}_'.format(self.get_monster_prefix_default())
+		return "{}{}_{}".format(prefix, encounter_name, monster_code_name)
+
 	def monster_setup(self, npc, encounter_name, monster_code_name, monster_name, no_draw = 1, no_kos = 1, faction = None):
 		assert isinstance(npc, toee.PyObjHandle)
 		if (not faction): faction = self.get_monster_faction_default(npc)
@@ -120,13 +124,12 @@ class CtrlDaemon(object):
 		info.cr = utils_npc.npc_get_cr(npc)
 		info.encounter_code = encounter_name
 		info.monster_code_name = monster_code_name
-		prefix = '' if not self.get_monster_prefix_default() else '{}_'.format(self.get_monster_prefix_default())
-		info.name = "{}{}_{}".format(prefix, encounter_name, monster_code_name)
+		info.name = self._get_monster_key(encounter_name, monster_code_name)
 		self.monsters[info.name] = info
 		return
 
 	def get_monsterinfo(self, encounter_name, monster_code_name):
-		key = "{}_{}_{}".format(self.get_monster_prefix_default(), encounter_name, monster_code_name)
+		key = self._get_monster_key(encounter_name, monster_code_name)
 		if (key in self.monsters):
 			info = self.monsters[key]
 			assert isinstance(info, monster_info.MonsterInfo)

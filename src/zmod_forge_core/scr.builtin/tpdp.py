@@ -105,7 +105,7 @@ class D20Action:
 		self.flags = toee.D20CAF_HIT # D20CAF_ flags
 		self.path = object() #todo
 		self.action_type = action_type #See D20A_ constants
-		self.loc = 0
+		self.loc = LocAndOffsets(0, 0)
 		self.anim_id = 0
 		self.spell_data = D20SpellData()
 		self.roll_id_0 = 0
@@ -123,9 +123,14 @@ class D20Action:
 		return 0
 
 	def create_projectile_and_throw(self, protoNum, endLoc):
+		assert isinstance(endLoc, LocAndOffsets)
 		return toee.PyObjHandle()
 
-	def to_hit_processing(self, projHndl, thrownItem):
+	def create_projectile_and_throw(self, protoNum, tgt):
+		assert isinstance(tgt, toee.PyObjHandle)
+		return toee.PyObjHandle()
+
+	def projectile_append(self, projHndl, thrownItem):
 		return
 
 class BonusList:
