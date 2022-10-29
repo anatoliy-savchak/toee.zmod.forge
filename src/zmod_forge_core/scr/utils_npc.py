@@ -764,9 +764,15 @@ def npc_goto_loc(npc, loc):
 	assert isinstance(loc, int)
 	return npc_goto_loc_full(npc, loc, 0, 0)
 
-def npc_loc_near_random(npc):
+def npc_loc_near_random(npc, allow_same = False):
 	assert isinstance(npc, toee.PyObjHandle)
-	x, y = utils_obj.loc2sec(npc.location)
+	return loc_near_random(npc.location)
+
+def loc_near_random(loc, allow_same = False):
+	assert isinstance(npc, toee.PyObjHandle)
+	if allow_same and toee.game.random_range(0, 8) == 0:
+		return loc
+	x, y = utils_obj.loc2sec(loc)
 	sign = 1 if toee.game.random_range(0, 1) else -1
 	x += toee.game.random_range(1, 2) * sign
 	sign = 1 if toee.game.random_range(0, 1) else -1

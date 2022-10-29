@@ -232,6 +232,7 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 
 	def spawn_dogowners(self):
 		npc_boy, ctrl = self.create_npc_at(utils_obj.sec2loc(470, 475), py06601_village_populace.CtrlVillageBoyDogOwner, const_toee.ROT09, "wanderers", "person_boy_with_dog", None, 0, 1)
+		ctrl.throw_to_loc = utils_obj.sec2loc(482, 475)
 
 		npc_dog, ctrl = self.create_npc_at(utils_obj.sec2loc(471, 480), py06601_village_populace.CtrlVillageBoyDog, const_toee.ROT11, "wanderers", "person_dog_of_boy", None, 0, 1)
 		if npc_dog:

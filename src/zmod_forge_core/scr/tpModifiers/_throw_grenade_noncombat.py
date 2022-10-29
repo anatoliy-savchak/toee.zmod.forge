@@ -41,8 +41,7 @@ def _throw_item(attachee, d20a, thrown_item):
 	loc_or_obj = d20a.target
 	if not loc_or_obj:
 		loc_or_obj = d20a.loc
-	#projectileProto = 3009 # dart
-	projectileProto = 3006 # club
+	projectileProto = thrown_item.get_weapon_projectile_proto()
 	projectileHandle = d20a.create_projectile_and_throw(projectileProto, loc_or_obj)
 	projectileHandle.obj_set_float(toee.obj_f_offset_z, 60.0)
 	if d20a.projectile_append(projectileHandle, thrown_item):

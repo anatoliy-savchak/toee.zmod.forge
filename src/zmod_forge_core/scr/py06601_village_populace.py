@@ -665,6 +665,7 @@ class SceneVillageBoyWithDog(Scene):
 	def do_after_created(self, npc):
 		Scene.do_after_created(self, npc)
 		self.thrown_id = None
+		self.throw_to_loc = 0
 		return
 
 	def scene_0(self, npc, scene_name):
@@ -696,7 +697,8 @@ class SceneVillageBoyWithDog(Scene):
 		#utils_obj.obj_timed_destroy(decoy, 100, 1)
 		#decoy.ai_stop_attacking()
 		#npc.action_perform(toee.D20A_PYTHON_ACTION, dog, utils_obj.sec2loc(482, 475), 3023)
-		npc.action_perform(toee.D20A_PYTHON_ACTION, toee.OBJ_HANDLE_NULL, utils_obj.sec2loc(482, 475), 3023)
+		thrown_loc = utils_npc.loc_near_random(self.throw_to_loc, True)
+		npc.action_perform(3023, toee.OBJ_HANDLE_NULL, thrown_loc)
 		#npc.action_perform(toee.D20A_THROW_GRENADE, dog, dog.location)
 		self.set_next_scene('fetch', 3)
 		return
