@@ -700,7 +700,7 @@ class SceneVillageBoyWithDog(Scene):
 		thrown_loc = utils_npc.loc_near_random(self.throw_to_loc, True)
 		npc.action_perform(3023, toee.OBJ_HANDLE_NULL, thrown_loc)
 		#npc.action_perform(toee.D20A_THROW_GRENADE, dog, dog.location)
-		self.set_next_scene('fetch', 3)
+		self.set_next_scene('fetch', 2)
 		return
 
 	def scene_fetch(self, npc, scene_name):
@@ -713,6 +713,11 @@ class SceneVillageBoyWithDog(Scene):
 				if dog_ctrl:
 					dog_ctrl.fetch_item_id = self.thrown_id
 					dog_ctrl.set_next_scene('fetch', 1)
+		niece = npc.obj_get_obj(toee.obj_f_npc_combat_focus)
+		if niece:
+			thrown = toee.game.get_obj_by_id(self.thrown_id)
+			if thrown:
+				niece.turn_towards(thrown)
 		return
 
 class CtrlVillageBoyDogOwner(CtrlVillagePersonRandom, SceneVillageBoyWithDog):
@@ -804,6 +809,21 @@ class CtrlVillageBoyDog(CtrlVillageAnimal, Scene):
 				npc.anim_goal_use_object(thrown, const_animate.AG_RUN_NEAR_OBJ, thrown.location, 0)
 				self.anim_id_pick_up = npc.anim_goal_get_new_id()
 				print('dog anim_id_pick_up: {}'.format(self.anim_id_pick_up))
+				self.set_next_scene('fetch_go_fix', 5)
+				niece = npc.leader_get().obj_get_obj(toee.obj_f_npc_combat_focus)
+				if niece:
+					niece.anim_goal_use_object(npc, const_animate.AG_ANIMATE_STUNNED, npc.location, 0)
+		
+		return
+
+	def scene_fetch_go_fix(self, npc, scene_name):
+		assert isinstance(npc, toee.PyObjHandle)
+		if self.fetch_item_id:
+			thrown = toee.game.get_obj_by_id(self.fetch_item_id)
+			if thrown:
+				self.anim_id_pick_up = -1
+				npc.anim_goal_interrupt()
+				self.set_next_scene('fetch_pick_up', 1)
 		
 		return
 
@@ -815,6 +835,11 @@ class CtrlVillageBoyDog(CtrlVillageAnimal, Scene):
 				npc.anim_goal_use_object(thrown, const_animate.AG_ATTEMPT_USE_SKILL_ON, thrown.location, 0)
 				npc.item_get(thrown)
 				self.set_next_scene('fetch_bring', 1)
+			boy = npc.leader_get()
+			if boy:
+				niece = boy.obj_get_obj(toee.obj_f_npc_combat_focus)
+				if niece:
+					niece.turn_towards(npc)
 		
 		return
 
@@ -831,6 +856,10 @@ class CtrlVillageBoyDog(CtrlVillageAnimal, Scene):
 					self.anim_id_bring = npc.anim_goal_get_new_id()
 					print('dog anim_id_bring: {}'.format(self.anim_id_bring))
 					self.set_next_scene('fetch_bring_fix', 4)
+					niece = boy.obj_get_obj(toee.obj_f_npc_combat_focus)
+					if niece:
+						niece.anim_goal_interrupt()
+						niece.turn_towards(boy)
 		
 		return
 
@@ -861,5 +890,13 @@ class CtrlVillageBoyDog(CtrlVillageAnimal, Scene):
 					boy_ctrl = ctrl_behaviour.get_ctrl(boy.id)
 					if boy_ctrl:
 						boy_ctrl.set_next_scene('init', 5)
+					niece = boy.obj_get_obj(toee.obj_f_npc_combat_focus)
+					if niece:
+						niece.anim_goal_interrupt()
+						niece.turn_towards(npc)
 		return
 
+class CtrlVillageGirl(CtrlVillagePersonRandom, SceneVillageBoyWithDog):
+	@classmethod
+	def get_proto_id(cls):
+		return 14705
