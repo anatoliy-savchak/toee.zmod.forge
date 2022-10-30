@@ -227,7 +227,9 @@
     <Compile Include="zmod_forge_core\scr\tpModifiers\improved_natural_armor.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\monster_sole_natural.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\monster_two_handed.py" />
-    <Compile Include="zmod_forge_core\scr\tpModifiers\athrow_grenade_noncombat.py" />
+    <Compile Include="zmod_forge_core\scr\tpModifiers\goal_hooks.py" />
+    <Compile Include="zmod_forge_core\scr\tpModifiers\_throw_grenade_noncombat.py" />
+    <Compile Include="zmod_forge_core\scr\tpModifiers\no_combat.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\non_combatant.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\rest_full.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\forge_weapon.py" />

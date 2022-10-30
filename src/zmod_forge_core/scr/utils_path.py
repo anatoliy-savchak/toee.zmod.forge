@@ -2,6 +2,12 @@ import math
 import toee
 import tpdp
 
+INCH_PER_TILE = 28.284271247461900976033774484194
+INCH_PER_HALFTILE = INCH_PER_TILE / 2.0
+INCH_PER_SUBTILE = INCH_PER_TILE / 3.0
+INCH_PER_FEET = 12
+
+
 def rot_from_locs(loc1, loc2):
 	""" Returns angle (rad) between two full locations. rot_from_locs(npc1.location_full, npc2.location_full) """
 	assert isinstance(loc1, tpdp.LocAndOffsets)

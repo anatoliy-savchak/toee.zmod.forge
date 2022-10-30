@@ -248,6 +248,10 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 
 		npc_aunt, ctrl = self.create_npc_at(utils_obj.sec2loc(469, 479), py06601_village_populace.CtrlVillageWomanRandom, const_toee.ROT11, "wanderers", "person_boy_aunt", None, 0, 1)
 		if npc_aunt:
+			locoff_aunt = utils_npc.npc_2_npc_near_tile(npc_mother, npc_aunt, 125, 0)
+			npc_aunt.move(locoff_aunt.get_location(), locoff_aunt.off_x, locoff_aunt.off_y)
+			print('npc_aunt.move({}, {}, {}, {})'.format(locoff_aunt.loc_xy.x, locoff_aunt.loc_xy.y, locoff_aunt.off_x, locoff_aunt.off_y))
+			npc_mother.move(utils_obj.sec2loc(469, 477), 0, 0)
 			npc_aunt.obj_set_obj(toee.obj_f_npc_leader, npc_mother)
 
 		npc_niece, ctrl = self.create_npc_at(utils_obj.sec2loc(471, 478), py06601_village_populace.CtrlVillageGirl, const_toee.ROT00, "wanderers", "person_boy_niece", None, 0, 1)

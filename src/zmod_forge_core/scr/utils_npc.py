@@ -1,4 +1,4 @@
-import toee, debug, tpdp, utils_obj, const_toee, utils_item
+import toee, debug, tpdp, utils_obj, const_toee, utils_item, math
 
 def npc_feats_print(npc):
 	assert isinstance(npc, toee.PyObjHandle)
@@ -778,6 +778,23 @@ def loc_near_random(loc, allow_same = False):
 	sign = 1 if toee.game.random_range(0, 1) else -1
 	y += toee.game.random_range(1, 2) * sign
 	return utils_obj.sec2loc(x, y)
+
+def npc_2_npc_near_tile(npc, target, angle_grad, range_between_ft):
+	""" Will determine near to npc tile to place target with distance of range_between_ft returning LocAndOffsets """
+	assert isinstance(npc, toee.PyObjHandle)
+	assert isinstance(target, toee.PyObjHandle)
+	assert isinstance(angle_grad, float)
+	assert isinstance(range_between_ft, float)
+
+	angle_rad = math.radians(angle_grad)
+	range_full = npc.radius / 12.0 + target.radius / 12.0 + range_between_ft
+	print('range_full ({}) = npc.radius ({}) / 12.0 + target.radius ({}) / 12.0 + range_between_ft ({})'.format(range_full, npc.radius, target.radius, range_between_ft))
+	result = npc.location_full
+	print(result)
+	assert isinstance(result, tpdp.LocAndOffsets)
+	result = result.get_offset_loc(angle_rad, range_full)
+	print(result)
+	return result
 
 def npc_find_path_to_target(npc, target, reach_ft = None):
 	assert isinstance(npc, toee.PyObjHandle)

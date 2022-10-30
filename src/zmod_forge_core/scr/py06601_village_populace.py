@@ -889,7 +889,7 @@ class CtrlVillageBoyDog(CtrlVillageAnimal, Scene):
 					boy.anim_goal_use_object(npc, const_animate.AG_ATTEMPT_USE_SKILL_ON, npc.location, 0)
 					boy_ctrl = ctrl_behaviour.get_ctrl(boy.id)
 					if boy_ctrl:
-						boy_ctrl.set_next_scene('init', 5)
+						boy_ctrl.set_next_scene('init', 20)
 					niece = boy.obj_get_obj(toee.obj_f_npc_combat_focus)
 					if niece:
 						niece.anim_goal_interrupt()
