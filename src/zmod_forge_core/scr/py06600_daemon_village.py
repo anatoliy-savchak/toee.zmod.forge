@@ -44,14 +44,13 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 		return
 
 	def place_encounters_initial(self):
-		#self.generate_animals()
 		self.generate_wanderers()
 		self.place_merchants()
-		#self.place_tavern()
 		self.generate_people()
 		self.spawn_walkers()
 		self.spawn_dogowners()
 		self.place_bar()
+		self.place_kerowyn()
 
 		self.daytime_check()
 		return
@@ -181,7 +180,7 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 		
 		return
 
-	def place_tavern(self):
+	def place_kerowyn(self):
 		kerowyn, kerowyn_ctrl = self.create_npc_at(utils_obj.sec2loc(492, 461), py06602_village_npc.CtrlKerowyn, const_toee.ROT02, "main", "kerowyn", None, 0, 1)
 
 		bodyguard, bodyguard_ctrl = self.create_npc_at(utils_obj.sec2loc(493, 460), py06602_village_npc.CtrlKerowynBodyguard, const_toee.ROT02, "main", "bodyguard", None, 0, 1)

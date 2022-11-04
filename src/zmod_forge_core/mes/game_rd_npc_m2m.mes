@@ -4,13 +4,13 @@
 // the first message is the logbook message
 // the second message is the rumor as told by an NPC in dialog
 
-{0} {There is cave complex to the south-west.}
+{0} {Nearby ruins are called Sunless Citadel.}
 {1} {}
 
-{10} {Shania at the Keep can decipher messages.}
+{10} {Sunless Citadel served as the retreat of an ancient dragon cult.}
 {11} {}
 
-{20} {Witch in Corinth lives on the South.}
+{20} {Sunless Citadel lies south of the village.}
 {21} {}
 
 {30} {We met fort's lieutenant, who offered information in exchange for his life.}

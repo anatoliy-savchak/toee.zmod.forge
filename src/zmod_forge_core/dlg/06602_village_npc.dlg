@@ -16,10 +16,26 @@
 {51}{Not yet. I'll be off.}{}{1}{}{0}{}
 
 {200}{Welcome to th'The Fresh Flask, traveler.  M'name's Davis Owensby... what'll it be for yeh?}{Why, 'ello there, love; m'name's Davis Owensby - welcome to the Fresh Flask.  What'll it be for yeh?}{}{}{}{}
-{201}{I was hoping I might ask you some questions.}{}{1}{}{0}{}
+{201}{I was hoping I might ask you some questions.}{}{1}{}{220}{}
 {202}{How much for the room?}{}{1}{}{210}{}
 {209}{Nothing for now. Farewell.}{}{1}{}{0}{}
 
 {210}{I have one room left. It's 2 cp for the night.}{I have one room left. It's 2 cp for the night.}{}{}{}{}
 {211}{I'll take it.}{}{1}{gc(npc).dialog_check_room_rent(pc)}{0}{gc(npc).dialog_room_rent(pc)}
 {219}{Never mind. Farewell.}{}{1}{}{0}{}
+
+{220}{Word to th'wise, friend... one doesn't come my tavern asking questions.  A dangerous thing t'do, it is - unless yer fishing for daggers in yer back rather than answers.}{Come now, love... one doesn't come inta my tavern asking questions.  A dangerous thing t'do, it is - unless yer fishing for daggers in yer back rather than answers.}{}{}{}{}
+{221}{Do you know anything about ruins nearby?}{}{1}{}{230}{}
+{229}{Farewell, then.}{}{1}{}{0}{}
+
+{230}{The Old Road ran right past the nearby ruins, called the Sunless Citadel, but fell into disuse because of goblin banditry. No one knows for sure what the Sunless Citadel once was, but old legends hint that it served as the retreat of an ancient dragon cult.}{The Old Road ran right past the nearby ruins, called the Sunless Citadel, but fell into disuse because of goblin banditry. No one knows for sure what the Sunless Citadel once was, but old legends hint that it served as the retreat of an ancient dragon cult.}{}{}{}{rumor_control.rumor_give(module_quests.RUMOR_SUNLESS_CITADEL_ARE_RUINS);rumor_control.rumor_give(module_quests.RUMOR_SUNLESS_CITADEL_WAS)}
+{231}{How to get there?}{}{1}{}{240}{}
+{239}{Farewell, then.}{}{1}{}{0}{}
+
+{240}{Just go south of the village.}{Just go south of the village.}{}{}{}{rumor_control.rumor_give(module_quests.RUMOR_SUNLESS_CITADEL_AT_SOUTH)}
+{249}{I appreciate it. Thanks.}{}{1}{}{0}{}
+
+{250}{Welcome back.  What'll it be for yeh this time?}{Welcome back.  What'll it be for yeh this time?}{}{}{}{}
+{251}{I was hoping I might ask you some questions.}{}{1}{}{220}{}
+{252}{How much for the room?}{}{1}{}{210}{}
+{259}{Nothing for now. Farewell.}{}{1}{}{0}{}

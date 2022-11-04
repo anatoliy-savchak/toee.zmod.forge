@@ -1,6 +1,6 @@
 import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod, utils_npc, const_animate
 import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls, const_proto_list_cloth
-import random, debug
+import debug, rumor_control
 import const_proto_npc, module_quests, module_globals
 
 MODULE_SCRIPT_ID = 6602
