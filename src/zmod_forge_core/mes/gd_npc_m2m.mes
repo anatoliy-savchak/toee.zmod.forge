@@ -187,6 +187,8 @@
 {4111}{That's some magnificent throne!}		// Throne
 {4112}{I feel like I'm being watched down here.}		// Greater Temple
 {4113}{There's an awful lot of ooze and fungus down here.}	// Zuggtmoy's level
+{4115}{} // Door icon
+{4116}{} // Door icon 2
 
 // 4200's NPC is bored waiting for the player to do something
 {4200}{Let's get moving!}
