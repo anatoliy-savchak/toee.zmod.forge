@@ -8,9 +8,29 @@
 {102}{F:}{}{1}{}{0}{}
 
 
-{1100}{Barter options:}{Barter options:}{}{}{}{}
+{1100}{Browse}{Browse}{}{}{}{}
 {1101}{B: Sell}{}{1}{}{0}{utils_item.barter_sell(npc)}
-{1102}{B: Buy Armor}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_armor.PROTOS_ARMOR_AND_SHIELDS)}
-{1104}{B: Buy Masterwork Armor}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_armor.PROTOS_ARMOR_AND_SHIELDS_MASTERWORK)}
-{1105}{B: Buy Magic Armor}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_armor.PROTOS_ARMOR_AND_SHIELDS_MAGIC)}
+{1102}{Supplies}{}{1}{}{1500}{}
+{1104}{Cloth}{}{1}{}{1410}{}
 {1109}{E:}{}{1}{}{0}{}
+
+{1500}{Browse}{Browse}{}{}{}{}
+{1503}{B:Buy Instruments   }{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_items.PROTOS_INSTRUMENTS)}
+{1504}{B:Buy Alchemy       }{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_items.PROTOS_ALCHEMY)}
+{1505}{B:Buy Tools}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_items.PROTOS_TOOLS)}
+{1509}{Back}{}{1}{}{1100}{}
+
+{1410}{Browse}{Browse}{}{}{}{}
+{1412}{B:Buy Garbs}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_cloth.PROTO_CLOTH_GARBS)}
+{1413}{B:Buy Robes}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_cloth.PROTO_CLOTH_ROBES)}
+{1414}{B:Buy Misc Outfit}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_cloth.PROTO_CLOTH_OUTFIT)}
+{1417}{Next...}{}{1}{}{1420}{}
+{1418}{Back...}{}{1}{}{1100}{}
+{1419}{E:}{}{1}{}{0}{}
+
+{1420}{Browse}{Browse}{}{}{}{}
+{1422}{B:Buy Boots}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_cloth.PROTO_CLOTH_BOOTS)}
+{1423}{B:Buy Gloves}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_cloth.PROTO_CLOTH_GLOVES)}
+{1424}{B:Buy Cloaks}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_cloth.PROTO_CLOTH_CLOAKS2)}
+{1425}{B:Buy Headdress}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_cloth.PROTO_CLOTH_HEADDRESS)}
+{1429}{E:}{}{1}{}{0}{}

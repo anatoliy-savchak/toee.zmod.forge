@@ -1,0 +1,26 @@
+import toee, templeplus.pymod, tpdp
+SKIP FOR NOW
+
+###################################################
+
+def GetConditionName():
+	return "Intoxicated"
+
+print("Registering " + GetConditionName())
+###################################################
+
+def OnGetMaxHP(attachee, args, evt_obj):
+	assert isinstance(attachee, toee.PyObjHandle)
+	assert isinstance(args, tpdp.EventArgs)
+	assert isinstance(evt_obj, tpdp.EventObjBonusList)
+
+	quantity = args.get_arg(1)
+	hp_bonus = 5 * quantity
+	if (hp_bonus):
+		evt_obj.bonus_list.add(hp_bonus, 0, "Intoxicated ({} drinks)".format(quantity))
+
+	return 0
+
+modObj = templeplus.pymod.PythonModifier(GetConditionName(), 6, 0) # 0 - countdown, 1 - quantity of drinks, 2 - max DC, 
+modObj.AddHook(toee.ET_OnGetMaxHP, toee.EK_NONE, OnGetMaxHP, ())
+

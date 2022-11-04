@@ -1,5 +1,6 @@
 import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod
 import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls, const_proto_list_armor
+import const_proto_list_potions, const_proto_list_items, const_proto_list_cloth
 
 def san_dialog(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
@@ -44,3 +45,11 @@ class CtrlVillageSmithWife(ctrl_behaviour.CtrlBehaviour):
 		else:
 			triggerer.begin_dialog(attachee, 100)
 		return toee.SKIP_DEFAULT
+
+	def get_is_off_at_night(self): return 1
+
+	def dialog_allowed_item_level(self, item_level): 
+		cs = ctrl_daemon.CtrlDaemon.get_current_daemon()
+		if cs and 'dialog_allowed_item_level' in dir(cs):
+			return cs.dialog_allowed_item_level(item_level)
+		return 1 #item_level < 4 # 0- masterwork, 1 - +1, etc

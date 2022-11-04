@@ -14,3 +14,12 @@
 
 {50}{Hello. Do you bring news about my nephews?}{Hello. Do you bring news about my nephews?}{}{}{}{}
 {51}{Not yet. I'll be off.}{}{1}{}{0}{}
+
+{200}{Welcome to th'The Fresh Flask, traveler.  M'name's Davis Owensby... what'll it be for yeh?}{Why, 'ello there, love; m'name's Davis Owensby - welcome to the Fresh Flask.  What'll it be for yeh?}{}{}{}{}
+{201}{I was hoping I might ask you some questions.}{}{1}{}{0}{}
+{202}{How much for the room?}{}{1}{}{210}{}
+{209}{Nothing for now. Farewell.}{}{1}{}{0}{}
+
+{210}{I have one room left. It's 2 cp for the night.}{I have one room left. It's 2 cp for the night.}{}{}{}{}
+{211}{I'll take it.}{}{1}{gc(npc).dialog_check_room_rent(pc)}{0}{gc(npc).dialog_room_rent(pc)}
+{219}{Never mind. Farewell.}{}{1}{}{0}{}

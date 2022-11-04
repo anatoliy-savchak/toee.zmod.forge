@@ -1,5 +1,6 @@
-import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod
+import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod, ctrl_daemon
 import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls
+import const_proto_list_weapons_magic, const_proto_list_weapons_masterwork
 
 def san_dialog(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
@@ -43,3 +44,11 @@ class CtrlVillageSmith(ctrl_behaviour.CtrlBehaviour):
 		else:
 			triggerer.begin_dialog(attachee, 100)
 		return toee.SKIP_DEFAULT
+
+	def dialog_allowed_item_level(self, item_level): 
+		cs = ctrl_daemon.CtrlDaemon.get_current_daemon()
+		if cs and 'dialog_allowed_item_level' in dir(cs):
+			return cs.dialog_allowed_item_level(item_level)
+		return 1 #item_level < 4 # 0- masterwork, 1 - +1, etc
+
+	def get_is_off_at_night(self): return 1

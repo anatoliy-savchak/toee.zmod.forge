@@ -1,6 +1,6 @@
 import toee, debug, ctrl_daemon, ctrl_daemon2, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
-import module_consts, const_proto_sceneries, utils_locks, utils_toee, const_animate
+import module_consts, const_proto_sceneries, utils_locks, utils_toee, const_animate, module_globals
 import py14710_smith, py14711_smith_wife, py14712_wizard, py14713_priest, py06601_village_populace, py06602_village_npc
 
 VILLAGE_DAEMON_SCRIPT_ID = 6600
@@ -40,22 +40,60 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 	def created(self, npc):
 		self.init_daemon2_fields(module_consts.MAP_ID_VILLAGE, VILLAGE_DAEMON_SCRIPT_ID, "village")
 		super(CtrlVillage, self).created(npc)
+		self.last_isday = 1
 		return
 
 	def place_encounters_initial(self):
 		#self.generate_animals()
 		self.generate_wanderers()
-		#self.place_merchants()
+		self.place_merchants()
 		#self.place_tavern()
 		self.generate_people()
 		self.spawn_walkers()
 		self.spawn_dogowners()
+		self.place_bar()
 
+		self.daytime_check()
 		return
 
 	# Sleep interface
 	def can_sleep(self):
+		if toee.game.global_flags[module_globals.GFLAG_REST_ALLOWED]:
+			return toee.SLEEP_SAFE
 		return toee.SLEEP_PASS_TIME_ONLY
+
+	def heartbeat(self, npc):
+		self.daytime_check()
+		return
+
+	def dialog_allowed_item_level(self, item_level): return item_level < 1 # 0- masterwork, 1 - +1, etc
+
+	def daytime_check(self):
+		is_daytime = toee.game.is_daytime()
+		if is_daytime == self.last_isday:
+			return
+		print('Daytime changed to is_daytime: {}'.format(is_daytime))
+
+		self.last_isday = is_daytime
+		self.validate_minfo()
+		for minfo in self.monsters.itervalues():
+			assert isinstance(minfo, monster_info.MonsterInfo)
+			#print("minfo.name: {}, minfo.id: {}".format(minfo.name, minfo.id))
+			ctrl = ctrl_behaviour.get_ctrl(minfo.id)
+			if ("get_is_off_at_night" in dir(ctrl)):
+				is_off_at_night = ctrl.get_is_off_at_night()
+				if is_off_at_night: 
+					npc = toee.game.get_obj_by_id(minfo.id)
+					if is_daytime and npc.object_flags_get() & toee.OF_OFF:
+						npc.object_flag_unset(toee.OF_OFF)
+					elif not is_daytime and not npc.object_flags_get() & toee.OF_OFF:
+						npc.object_flag_set(toee.OF_OFF)
+
+			if ("day_night_changed" in dir(ctrl)):
+				npc = toee.game.get_obj_by_id(minfo.id)
+				ctrl.day_night_changed(npc)
+		return
+
 
 	def generate_animals(self):
 		# there are problems, skip for now
@@ -259,4 +297,8 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 			npc_niece.obj_set_obj(toee.obj_f_npc_leader, npc_aunt)
 			npc_niece.turn_towards(npc_dog)
 			npc_boy.obj_set_obj(toee.obj_f_npc_combat_focus, npc_niece)
+		return
+
+	def place_bar(self):
+		npc_barkeeper, ctrl = self.create_npc_at(utils_obj.sec2loc(487, 454), py06602_village_npc.CtrlVillageBarkeeper, const_toee.ROT04, "main", "barkeeper", None, 0, 1)
 		return

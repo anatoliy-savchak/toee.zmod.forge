@@ -754,7 +754,7 @@ class game(object):
 		return
 
 	@staticmethod
-	def timevent_add(func, func_args_tuple, time_ms, is_realtime = 0):
+	def timeevent_add(func, func_args_tuple, time_ms, is_realtime = 0):
 		""" Schedule function call game.timevent_add(func, func_args_tuple, time_ms, is_realtime = 0) -> None"""
 		return 0
 	

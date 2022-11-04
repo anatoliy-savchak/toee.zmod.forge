@@ -103,58 +103,66 @@
 {1670}{Glory to the Sun God!}{Glory to Pelor!}{}{1570}{}{}
 {1671}{Let me have it.}{}{1}{}{1650}{npc.cast_spell(toee.spell_neutralize_poison, picker_obj )}
 
-{1000}{Barter options}{Barter options}{}{}{}{}
+{1000}{Browse}{Browse}{}{}{}{}
 {1001}{B:Sell}{}{1}{}{0}{utils_item.barter_sell(npc)}
 {1002}{Scrolls}{}{1}{}{1300}{}
 {1003}{Wands}{}{1}{}{1200}{}
+{1004}{Potions}{}{1}{}{1510}{}
 {1009}{E:}{}{1}{}{0}{}
 
-{1200}{Barter options:}{Barter options:}{}{}{}{}
+{1200}{Browse}{Browse}{}{}{}{}
 {1201}{B:Sell}{}{1}{}{0}{utils_item.barter_sell(npc)}
 {1204}{Buy Divine Wand}{}{1}{}{1230}{}
 {1209}{E:}{}{1}{}{0}{}
 
-{1230}{Barter options:}{Barter options:}{}{}{}{}
-{1231}{B:Buy Divine Wand Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_0)}
-{1232}{B:Buy Divine Wand Level 1}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_1)}
-{1233}{B:Buy Divine Wand Level 2}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_2)}
-{1237}{Next...}{}{1}{}{1240}{}
+{1230}{Browse}{Browse}{}{}{}{}
+{1231}{B:Buy Divine Wand Level 0}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(0)}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_0)}
+{1232}{B:Buy Divine Wand Level 1}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(0)}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_1)}
+{1233}{B:Buy Divine Wand Level 2}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(2)}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_2)}
+{1237}{Next...}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(3)}{1240}{}
 {1238}{Back...}{}{1}{}{1200}{}
 {1239}{E:}{}{1}{}{0}{}
 
-{1240}{Barter options:}{Barter options:}{}{}{}{}
-{1242}{B:Buy Divine Wand Level 3}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_3)}
-{1243}{B:Buy Divine Wand Level 4}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_4)}
-{1244}{B:Buy Divine Wand Level 5}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_5)}
+{1240}{Browse}{Browse}{}{}{}{}
+{1242}{B:Buy Divine Wand Level 3}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(3)}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_3)}
+{1243}{B:Buy Divine Wand Level 4}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(4)}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_4)}
+{1244}{B:Buy Divine Wand Level 5}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(5)}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_5)}
 {1248}{Back...}{}{1}{}{1200}{}
 {1249}{E:}{}{1}{}{0}{}
 
-{1300}{Barter options:}{Barter options:}{}{}{}{}
+{1300}{Browse}{Browse}{}{}{}{}
 {1301}{B:Sell}{}{1}{}{0}{utils_item.barter_sell(npc)}
 {1304}{Buy Divine Scroll}{}{1}{}{1340}{}
 {1309}{E:}{}{1}{}{0}{}
 
-{1340}{Barter options:}{Barter options:}{}{}{}{}
-{1342}{B:Buy Divine Scroll Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_0)}
-{1343}{B:Buy Divine Scroll Level 1}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_1)}
-{1344}{B:Buy Divine Scroll Level 2}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_2)}
-{1347}{Next...}{}{1}{}{1350}{}
+{1340}{Browse}{Browse}{}{}{}{}
+{1342}{B:Buy Divine Scroll Level 0}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(0)}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_0)}
+{1343}{B:Buy Divine Scroll Level 1}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(0)}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_1)}
+{1344}{B:Buy Divine Scroll Level 2}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(2)}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_2)}
+{1347}{Next...}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(3)}{1350}{}
 {1348}{Back...}{}{1}{}{1300}{}
 {1349}{E:}{}{1}{}{0}{}
 
-{1350}{Barter options:}{Barter options:}{}{}{}{}
-{1352}{B:Buy Divine Scroll Level 3}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_3)}
-{1353}{B:Buy Divine Scroll Level 4}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_4)}
-{1354}{B:Buy Divine Scroll Level 5}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_5)}
-{1357}{Next...}{}{1}{}{1360}{}
+{1350}{Browse}{Browse}{}{}{}{}
+{1352}{B:Buy Divine Scroll Level 3}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(3)}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_3)}
+{1353}{B:Buy Divine Scroll Level 4}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(4)}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_4)}
+{1354}{B:Buy Divine Scroll Level 5}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(5)}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_5)}
+{1357}{Next...}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(6)}{1360}{}
 {1358}{Back...}{}{1}{}{1300}{}
 {1359}{E:}{}{1}{}{0}{}
 
-{1360}{Barter options:}{Barter options:}{}{}{}{}
-{1362}{B:Buy Divine Scroll Level 6}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_6)}
-{1363}{B:Buy Divine Scroll Level 7}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_7)}
-{1364}{B:Buy Divine Scroll Level 8}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_8)}
-{1365}{B:Buy Divine Scroll Level 9}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_9)}
+{1360}{Browse}{Browse}{}{}{}{}
+{1362}{B:Buy Divine Scroll Level 6}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(6)}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_6)}
+{1363}{B:Buy Divine Scroll Level 7}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(7)}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_7)}
+{1364}{B:Buy Divine Scroll Level 8}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(8)}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_8)}
+{1365}{B:Buy Divine Scroll Level 9}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(9)}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_SCROLLS_DIVINE_LEVEL_9)}
 {1368}{Back...}{}{1}{}{1300}{}
 {1369}{E:}{}{1}{}{0}{}
+
+{1510}{Buy Potions}{Buy Potions}{}{}{}{}
+{1512}{B:Buy Potions Level 1}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(0)}}{0}{utils_item.barter_list(npc, const_proto_list_potions.PROTOS_POTIONS_DIVINE_LEVEL_1)}
+{1513}{B:Buy Potions Level 2}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(2)}}{0}{utils_item.barter_list(npc, const_proto_list_potions.PROTOS_POTIONS_DIVINE_LEVEL_2)}
+{1514}{B:Buy Potions Level 3}{}{1}{ctrl_behaviour.get_ctrl(npc.id).dialog_allowed_item_level(3)}}{0}{utils_item.barter_list(npc, const_proto_list_potions.PROTOS_POTIONS_DIVINE_LEVEL_3)}
+{1518}{Back...}{}{1}{}{1000}{}
+{1519}{E:}{}{1}{}{0}{}
 

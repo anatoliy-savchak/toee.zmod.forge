@@ -386,6 +386,8 @@ def barter_list(npc, protos, create_subs = 0, additional_objects = None):
 			item.obj_set_int(toee.obj_f_ammo_quantity, 10*item.obj_get_int(toee.obj_f_ammo_quantity))
 		elif (item_type == toee.obj_t_scroll):
 			item.obj_set_int(toee.obj_f_item_quantity, 10)
+		elif (item_type == toee.obj_t_food):
+			item.obj_set_int(toee.obj_f_item_quantity, 10)
 		items["{}_{}_{}_{}".format(kind, item.description, i, j)] = item
 		return
 

@@ -4,32 +4,15 @@ import random, debug, math
 
 MODULE_SCRIPT_ID = 6601
 
-def san_start_combat(attachee, triggerer):
-	assert isinstance(attachee, toee.PyObjHandle)
-	assert isinstance(triggerer, toee.PyObjHandle)
-	ctrl = ctrl_behaviour.CtrlBehaviour.get_from_obj(attachee)
-	if (ctrl):
-		return ctrl.start_combat(attachee, triggerer)
-	return toee.RUN_DEFAULT
-
-def san_dialog(attachee, triggerer):
-	assert isinstance(attachee, toee.PyObjHandle)
-	assert isinstance(triggerer, toee.PyObjHandle)
-	ctrl = ctrl_behaviour.CtrlBehaviour.get_from_obj(attachee)
-	if (ctrl):
-		return ctrl.dialog(attachee, triggerer)
-	return toee.RUN_DEFAULT
-
-def san_heartbeat(attachee, triggerer):
-	assert isinstance(attachee, toee.PyObjHandle)
-	assert isinstance(triggerer, toee.PyObjHandle)
-	ctrl = ctrl_behaviour.CtrlBehaviour.get_from_obj(attachee)
-	if (ctrl):
-		#print("heartbeat {}".format(attachee))
-		return ctrl.heartbeat(attachee, triggerer)
-	else: 
-		print("ctrl not found for {}".format(attachee))
-	return toee.RUN_DEFAULT
+def san_start_combat(attachee, triggerer): return ctrl_behaviour.san_start_combat(attachee, triggerer)
+def san_enter_combat(attachee, triggerer): return ctrl_behaviour.san_enter_combat(attachee, triggerer)
+def san_end_combat(attachee, triggerer): return ctrl_behaviour.san_end_combat(attachee, triggerer)
+def san_exit_combat(attachee, triggerer): return ctrl_behaviour.san_exit_combat(attachee, triggerer)
+def san_will_kos(attachee, triggerer): return ctrl_behaviour.san_will_kos(attachee, triggerer)
+def san_dialog(attachee, triggerer): return ctrl_behaviour.san_dialog(attachee, triggerer)
+def san_heartbeat(attachee, triggerer): return 0 if attachee.object_flags_get() & toee.OF_OFF else ctrl_behaviour.san_heartbeat(attachee, triggerer)
+def san_wield_off(attachee, triggerer): return ctrl_behaviour.san_wield_off(attachee, triggerer)
+def gc(npc): return ctrl_behaviour.get_ctrl(npc.id)
 
 class CtrlVillagePersonRandom(ctrl_behaviour.CtrlBehaviour):
 	def after_created(self, npc):
@@ -76,6 +59,8 @@ class CtrlVillagePersonRandom(ctrl_behaviour.CtrlBehaviour):
 		npc.item_wield_best_all()
 		return
 
+	def get_is_off_at_night(self): return 1
+
 class CtrlVillageManRandom(CtrlVillagePersonRandom):
 	@classmethod
 	def get_proto_id(cls):
@@ -93,6 +78,8 @@ class CtrlVillageAnimal(ctrl_behaviour.CtrlBehaviour):
 		utils_item.item_clear_all(npc)
 		npc.faction_add(factions_zmod.FACTION_WILDERNESS_INDIFFERENT)
 		return
+
+	def get_is_off_at_night(self): return 1
 
 class CtrlVillageAnimalPig(CtrlVillageAnimal):
 	@classmethod
@@ -896,7 +883,7 @@ class CtrlVillageBoyDog(CtrlVillageAnimal, Scene):
 						niece.turn_towards(npc)
 		return
 
-class CtrlVillageGirl(CtrlVillagePersonRandom, SceneVillageBoyWithDog):
+class CtrlVillageGirl(CtrlVillagePersonRandom):
 	@classmethod
 	def get_proto_id(cls):
 		return 14705

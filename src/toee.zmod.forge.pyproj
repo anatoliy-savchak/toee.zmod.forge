@@ -105,8 +105,10 @@
     <Compile Include="zmod_forge_core\scr\const_proto_items.py" />
     <Compile Include="zmod_forge_core\scr\const_proto_list_armor.py" />
     <Compile Include="zmod_forge_core\scr\const_proto_list_cloth.py" />
+    <Compile Include="zmod_forge_core\scr\const_proto_list_potions.py" />
     <Compile Include="zmod_forge_core\scr\const_proto_list_scrolls.py" />
     <Compile Include="zmod_forge_core\scr\const_proto_list_wands.py" />
+    <Compile Include="zmod_forge_core\scr\const_proto_list_wondrous.py" />
     <Compile Include="zmod_forge_core\scr\const_proto_map_armor.py" />
     <Compile Include="zmod_forge_core\scr\const_proto_map_weapons.py" />
     <Compile Include="zmod_forge_core\scr\const_proto_list_weapons.py" />
@@ -215,6 +217,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="zmod_forge_core\scr\tpModifiers\fighting_defensively_monster.py" />
+    <Compile Include="zmod_forge_core\scr\tpModifiers\intoxicated.ty" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\knowstone.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\dead_below.py" />
     <Compile Include="zmod_forge_core\scr\tpModifiers\dead_nodraw.py" />
