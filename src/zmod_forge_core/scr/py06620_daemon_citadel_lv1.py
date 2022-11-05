@@ -1,7 +1,7 @@
 import toee, debug, debugg, utils_toee, utils_storage, utils_obj, utils_item, const_toee, ctrl_daemon, ctrl_daemon2
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, utils_npc, utils_locks, const_proto_items, const_proto_scrolls, const_proto_rings
 import monster_info, module_quests, module_consts, module_globals
-import py06610_road_encounters
+import py06610_road_encounters, py04000_monster_manual1_p1
 
 DAEMON_SCRIPT_ID = 6611
 DAEMON_GID = "G_0621A980_A4D0_4724_949F_B084035AAA6B"
@@ -37,12 +37,13 @@ class CtrlCitadelLv1(ctrl_daemon2.CtrlDaemon2):
 		self.init_daemon2_fields(module_consts.MAP_ID_CITADEL_LV1, DAEMON_SCRIPT_ID, "citadel_lv1")
 		super(CtrlCitadelLv1, self).created(npc)
 		self.vars["foe_ids"] = list()
+		self.encounter = None
 		return
 
 	def place_encounters_initial(self):
 		self.place_portals()
 		self.place_doors()
-
+		self.encounters_create()
 		#self.place_monsters_r03()
 		return
 
@@ -57,10 +58,30 @@ class CtrlCitadelLv1(ctrl_daemon2.CtrlDaemon2):
 
 	def place_portals(self):
 		py06610_road_encounters.PortalCitadelLv1ToRoad1.create_obj_at_locxy(470, 529)
-		print('portals placed')
 		return
 
 	def place_doors(self):
 		utils_locks.portal_hook_autodestroy(493, 474, 30)
+		return
+
+	def encounters_create(self):
+		self.encounter_01_create()
+		return
+
+	def create_npc_at_loc(self, x, y, clas, rot, codename):
+		return self.create_npc_at(utils_obj.sec2loc(x, y), clas, rot, self.encounter, codename, None, 0, 0)
+
+	def encounter_01_create(self):
+		self.encounter = '01'
+		npc_leader, ctrl = self.create_npc_at_loc(476, 526, py04000_monster_manual1_p1.CtrlDireRat, const_toee.ROT10, 'rat1')
+		utils_npc.npc_hp_set(npc_leader, 6)
+
+		npc, ctrl = self.create_npc_at_loc(476, 526, py04000_monster_manual1_p1.CtrlDireRat, const_toee.ROT10, 'rat2')
+		utils_npc.npc_hp_set(npc, 4)
+		npc.obj_set_obj(toee.obj_f_npc_leader, npc_leader)
+
+		npc, ctrl = self.create_npc_at_loc(476, 526, py04000_monster_manual1_p1.CtrlDireRat, const_toee.ROT10, 'rat3')
+		utils_npc.npc_hp_set(npc, 3)
+		npc.obj_set_obj(toee.obj_f_npc_leader, npc_leader)
 		return
 

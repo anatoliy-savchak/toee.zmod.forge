@@ -39,3 +39,13 @@ class CtrlLizardfolkBase(ctrl_behaviour.CtrlBehaviour):
 		assert isinstance(npc, toee.PyObjHandle)
 		npc.scripts[const_toee.sn_enter_combat] = THIS_SCRIPT_ID
 		return
+
+# MM1, pg 64
+class CtrlDireRat(ctrl_behaviour.CtrlBehaviourAI):
+	@classmethod
+	def get_proto_id(cls): return 14765
+
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		npc.scripts[const_toee.sn_enter_combat] = THIS_SCRIPT_ID
+		return

@@ -2,230 +2,12 @@ import toee, debug
 import utils_item, const_proto_weapon, const_proto_armor, const_proto_cloth, const_proto_scrolls, utils_npc
 
 # import pc_build
-# pc_build.kots_b1()
-def kots_b1():
-	# 1: cleric
-	# 2: fighter tank
-	# 3: fighter dex
-	# 4: wizard
-
-	# fighter tank
-	pc = toee.game.party[1]
-	if (pc):
-		#utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_SWORD_BASTARD, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_BREASTPLATE_GOLD, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_LARGE_STEEL, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GOLD_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# fighter dex
-	pc = toee.game.party[2]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_LONGSWORD, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_BANDED_MAIL, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_LARGE_STEEL_2, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# cleric
-	pc = toee.game.party[0]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# wizard
-	pc = toee.game.party[3]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_MONK, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_MONK_OUTFIT, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	return
-
-def kots_b2():
-	# what if all equipment is max out lv1
-	# 1: cleric
-	# 2: fighter tank
-	# 3: fighter dex
-	# 4: wizard
-
-	# fighter tank
-	pc = toee.game.party[1]
-	if (pc):
-		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_WEAPON_SWORD_BASTARD_MASTERWORK, pc)
-		utils_item.item_create_in_inventory(const_proto_armor.PROTO_ARMOR_FULL_PLATE, pc)
-		utils_item.item_create_in_inventory(const_proto_armor.PROTO_SHIELD_LARGE_STEEL, pc)
-		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		utils_item.item_clear_by_proto(pc, const_proto_weapon.PROTO_WEAPON_SWORD_BASTARD)
-		pc.item_wield_best_all()
-
-	# fighter dex
-	pc = toee.game.party[2]
-	if (pc):
-		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_LONGSWORD_MASTERWORK, pc)
-		utils_item.item_create_in_inventory(const_proto_armor.PROTO_ARMOR_FULL_PLATE, pc)
-		utils_item.item_create_in_inventory(const_proto_armor.PROTO_SHIELD_LARGE_STEEL_2, pc)
-		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# cleric
-	pc = toee.game.party[0]
-	if (pc):
-		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT_MASTERWORK, pc)
-		item = utils_item.item_create_in_inventory(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		if (item):
-			item.obj_set_int(toee.obj_f_ammo_quantity, 50)
-
-		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_WEAPON_MACE_LIGHT_MASTERWORK, pc)
-		utils_item.item_create_in_inventory(const_proto_armor.PROTO_SHIELD_SMALL_STEEL, pc)
-		
-		utils_item.item_create_in_inventory(const_proto_armor.PROTO_ARMOR_FULL_PLATE, pc)
-		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# wizard
-	pc = toee.game.party[3]
-	if (pc):
-		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT_MASTERWORK, pc)
-		item = utils_item.item_create_in_inventory(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		if (item):
-			item.obj_set_int(toee.obj_f_ammo_quantity, 50)
-		
-		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_MONK, pc)
-		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_MONK_OUTFIT, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	return
-
-# import pc_build
-# pc_build.kots_b3()
-def kots_b3():
-	# 1: cleric
-	# 2: fighter tank
-	# 3: fighter dex
-	# 4: wizard
-
-	# instead of cleric armor buy her used acid splash
-
-	# fighter tank
-	pc = toee.game.party[1]
-	if (pc):
-		#utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_SWORD_BASTARD, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_BREASTPLATE_GOLD, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_LARGE_STEEL, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GOLD_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# fighter dex
-	pc = toee.game.party[2]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_LONGSWORD, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_BANDED_MAIL, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_LARGE_STEEL_2, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# cleric
-	pc = toee.game.party[0]
-	if (pc):
-		#utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
-		#utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		
-		#utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		#utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		#utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# wizard
-	pc = toee.game.party[3]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_MONK, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_MONK_OUTFIT, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	return
-
-def kots_b4():
-	# 1: cleric
-	# 2: fighter tank
-	# 3: fighter dex
-	# 4: wizard
-
-	# fighter tank
-	pc = toee.game.party[1]
-	if (pc):
-		#utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_SWORD_BASTARD, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_BREASTPLATE_GOLD, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_LARGE_STEEL, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GOLD_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# fighter dex
-	pc = toee.game.party[2]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_GUISARME, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_BANDED_MAIL, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# cleric
-	pc = toee.game.party[0]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# wizard
-	pc = toee.game.party[3]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_MONK, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_MONK_OUTFIT, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-
-		utils_item.item_create_in_inventory_buy(const_proto_scrolls.PROTO_SCROLL_OF_ENLARGE_PERSON, pc)
-		
-		pc.item_wield_best_all()
-
-	return
-
-# import pc_build
-# pc_build.kots_c1()
-
-def kots_c1():
+# pc_build.forge_a1()
+def forge_a1():
 	# 1: barbarian
-	# 2: fighter dex
-	# 3: cleric
-	# 4: wizard
+	# 2: dwarf cleric longsword
+	# 3: sorc
+	# 4: wizard from rogue
 
 	# fighter tank
 	pc = toee.game.party[0]
@@ -237,149 +19,19 @@ def kots_c1():
 		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
 		pc.item_wield_best_all()
 
-	# fighter dex
+	# cleric
 	pc = toee.game.party[1]
 	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_GUISARME, pc)
+		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_LONGSWORD, pc)
+		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_SMALL_WOODEN, pc)
 		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_BANDED_MAIL, pc)
 		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
 		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
 		pc.item_wield_best_all()
 
-	# cleric
-	pc = toee.game.party[2]
-	if (pc):
-		#utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
-		#utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_LARGE_WOODEN, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_GILDED_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# wizard
-	pc = toee.game.party[3]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
-		item = utils_item.item_create_in_inventory(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		if (item):
-			item.obj_set_int(toee.obj_f_ammo_quantity, 50)
-		
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_MONK, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_MONK_OUTFIT, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-
-		#utils_item.item_create_in_inventory_buy(const_proto_scrolls.PROTO_SCROLL_OF_ENLARGE_PERSON, pc)
-		
-		pc.item_wield_best_all()
-
-	return
-
-# import pc_build
-# pc_build.kots_l1()
-
-def kots_l1():
-	# 1: fighter bastard
-	# 2: fighter longsword
-	# 3: cleric
-	# 4: wizard
-
-	# fighter tank
-	pc = toee.game.party[0]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_LARGE_STEEL, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_SILVER_PLATE_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# fighter dex
-	pc = toee.game.party[1]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_LONGSWORD, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_LARGE_STEEL_2, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_SILVER_PLATE_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# cleric
-	pc = toee.game.party[2]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_MORNINGSTAR, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_SMALL_WOODEN, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_SILVER_PLATE_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
-	# wizard
-	pc = toee.game.party[3]
-	if (pc):
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
-		item = utils_item.item_create_in_inventory(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
-		if (item):
-			item.obj_set_int(toee.obj_f_ammo_quantity, 50)
-		
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_MONK, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_MONK_OUTFIT, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-
-		#utils_item.item_create_in_inventory_buy(const_proto_scrolls.PROTO_SCROLL_OF_ENLARGE_PERSON, pc)
-		
-		pc.item_wield_best_all()
-
-	return
-
-# game.leader.stat_base_set(stat_dexterity, 15)
-
-# import pc_build
-# pc_build.kots_k2()
-def kots_k2():
-	# 1: fighter greatsw
-	# 2: fighter bastard
-	# 3: cleric
-	# 4: sorc
-
-	# fighter dmg
-	pc = toee.game.party[0]
-	if (pc):
-		utils_npc.npc_abilities_set(pc, [18, 13, 16, 15, 13, 13])
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_GREATAXE, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_SILVER_PLATE_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.feat_add(toee.feat_combat_reflexes)
-		pc.item_wield_best_all()
-
-	# fighter dex
-	pc = toee.game.party[1]
-	if (pc):
-		utils_npc.npc_abilities_set(pc, [18, 16, 15, 10, 14, 8])
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_LARGE_STEEL, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_SILVER_PLATE_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.feat_add(toee.feat_dodge)
-		pc.feat_add(toee.feat_combat_reflexes)
-		pc.item_wield_best_all()
-
-	# cleric
-	pc = toee.game.party[2]
-	if (pc):
-		utils_npc.npc_abilities_set(pc, [15, 15, 18, 12, 18, 15])
-		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_MORNINGSTAR, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_ARMOR_CHAIN_SHIRT, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_armor.PROTO_SHIELD_SMALL_WOODEN, pc)
-		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_SILVER_PLATE_BOOTS, pc)
-		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
-		pc.item_wield_best_all()
-
 	# sorc
 	pc = toee.game.party[3]
 	if (pc):
-		utils_npc.npc_abilities_set(pc, [14, 15, 17, 13, 15, 18])
 		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
 		item = utils_item.item_create_in_inventory(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
 		if (item):
@@ -393,35 +45,20 @@ def kots_k2():
 		
 		pc.item_wield_best_all()
 
-	return
-
-def kots_e():
-	# 1: fighter greatsw
-	# 2: fighter bastard
-	# 3: cleric
-	# 4: sorc
-
-	# fighter dmg
-	pc = toee.game.party[0]
-	if (pc):
-		utils_npc.npc_abilities_set(pc, [18, 16, 16, 16, 14, 15])
-
-	# fighter dex
-	pc = toee.game.party[1]
-	if (pc):
-		utils_npc.npc_abilities_set(pc, [18, 17, 16, 17, 16, 13])
-		pc.item_wield_best_all()
-
-	# cleric
+	# wizard
 	pc = toee.game.party[2]
 	if (pc):
-		utils_npc.npc_abilities_set(pc, [16, 14, 17, 16, 18, 16])
+		utils_item.item_create_in_inventory_buy(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT, pc)
+		item = utils_item.item_create_in_inventory(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, pc)
+		if (item):
+			item.obj_set_int(toee.obj_f_ammo_quantity, 50)
+		
+		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_GARB_NOBLE_PURPLE, pc)
+		utils_item.item_create_in_inventory_buy(const_proto_cloth.PROTO_CLOTH_BOOTS_LEATHER_BOOTS_FINE, pc)
+		utils_item.item_clear_by_proto(pc, const_proto_cloth.PROTO_CLOTH_GARB_BROWN)
 
-	# sorc
-	pc = toee.game.party[3]
-	if (pc):
-		utils_npc.npc_abilities_set(pc, [15, 17, 17, 14, 18, 13])
+		#utils_item.item_create_in_inventory_buy(const_proto_scrolls.PROTO_SCROLL_OF_ENLARGE_PERSON, pc)
+		
+		pc.item_wield_best_all()
 
 	return
-
-# game.leader.stat_base_set(stat_dexterity, 15)
