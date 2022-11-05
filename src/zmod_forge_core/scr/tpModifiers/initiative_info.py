@@ -1,5 +1,4 @@
 import toee, templeplus.pymod, tpdp, sys, debug, traceback
-import utils_npc
 
 ###################################################
 
@@ -12,6 +11,7 @@ print("Registering " + GetConditionName())
 def InitiativeInfo_Print(attachee, args):
 	assert isinstance(attachee, toee.PyObjHandle)
 	try:
+		import utils_npc
 		if not args.get_arg(1) and toee.game.combat_is_active():
 			args.set_arg(1, 1)
 			npcs = list()

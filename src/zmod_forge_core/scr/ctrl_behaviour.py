@@ -1,6 +1,6 @@
 import toee, debug, utils_storage, utils_npc_spells, const_toee, utils_tactics, const_proto_weapon, utils_item, const_proto_armor, const_proto_scrolls
 import utils_target_list, utils_npc, tpdp, tpactions, copy
-import logging
+import logging, utils_obj
 
 def get_ctrl(id):
 	assert isinstance(id, str)
@@ -156,10 +156,14 @@ class CtrlBehaviour(object):
 		return npc
 
 	@classmethod
-	def create_obj_at_loc(cls, loc):
+	def create_obj_at_loc(cls, loc, off_x = 0, off_y = 0):
 		npc = cls.create_obj(loc)
-		npc.move(loc)
+		npc.move(loc, off_x, off_y)
 		return npc
+
+	@classmethod
+	def create_obj_at_locxy(cls, x, y, off_x = 0, off_y = 0):
+		return cls.create_obj_at_loc(utils_obj.sec2loc(x, y), off_x, off_y)
 
 	@classmethod
 	def get_name(cls):

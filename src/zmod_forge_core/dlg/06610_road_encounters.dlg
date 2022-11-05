@@ -1,0 +1,4 @@
+{100}{A roughly hewn stairwell zigs and zags down the side of the ledge, descending into darkness.}{A roughly hewn stairwell zigs and zags down the side of the ledge, descending into darkness.}{}{}{}{}
+{102}{Head down the stairs.}{}{1}{gc(npc).can_travel_road_to_citadel(npc)}{0}{gc(npc).travel_road_to_citadel(npc)}
+{109}{Step back.}{}{1}{}{0}{}
+

@@ -75,11 +75,7 @@ class CtrlPortalOut(ctrl_behaviour.CtrlBehaviour):
 		assert isinstance(npc, toee.PyObjHandle)
 		return MODULE_SCRIPT_ID
 
-class CtrlPortalOutImmediate(CtrlPortalOut):
-	def dialog(self, attachee, triggerer):
-		assert isinstance(attachee, toee.PyObjHandle)
-		assert isinstance(triggerer, toee.PyObjHandle)
-
+	def do_travel(self, npc):
 		print("fade_and_teleport(0, 0, 0, {}, {}, {})...".format(self.get_dest_map(), self.get_dest_location()[0], self.get_dest_location()[1]))
 		toee.game.fade_and_teleport(
 			0, 0, 0, 
@@ -87,6 +83,13 @@ class CtrlPortalOutImmediate(CtrlPortalOut):
 			self.get_dest_location()[0], 
 			self.get_dest_location()[1]
 			)
+		return
+
+class CtrlPortalOutImmediate(CtrlPortalOut):
+	def dialog(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		assert isinstance(triggerer, toee.PyObjHandle)
+		self.do_travel(attachee)
 		return toee.SKIP_DEFAULT
 
 	def get_dest_location(self): return 0

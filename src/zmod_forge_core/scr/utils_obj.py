@@ -259,3 +259,12 @@ def money_to_str(value_cp):
 	if (not reminder):
 		return "{} {}".format(gold_str, silver_str).strip()
 	return "{} {} {} cp".format(gold_str, silver_str, reminder).strip()
+
+def print_objects(loc, radius = 100, flags = toee.OLC_ALL):
+	for obj in toee.game.obj_list_range(loc, radius, toee.OLC_ALL):
+		assert isinstance(obj, toee.PyObjHandle)
+		location_full = obj.location_full
+		#import tpdp
+		#assert isinstance(location_full, tpdp.LocAndOffsets)
+		print('{} .move({}, {}, {}, {}), distance: {}'.format(obj.description, location_full.loc_xy.x, location_full.loc_xy.y, location_full.off_x, location_full.off_y, obj.distance_to(loc)))
+	return

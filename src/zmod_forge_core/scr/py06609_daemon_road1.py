@@ -1,6 +1,7 @@
 import toee, debug, debugg, utils_toee, utils_storage, utils_obj, utils_item, const_toee, ctrl_daemon, ctrl_daemon2
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, utils_npc, utils_locks, const_proto_items, const_proto_scrolls, const_proto_rings
 import monster_info, module_quests, module_consts, module_globals
+import py06610_road_encounters
 
 DAEMON_SCRIPT_ID = 6609
 DAEMON_GID = "G_A2A17BEF_C82B_4021_B305_1857DF8D8A71"
@@ -42,6 +43,8 @@ class CtrlRoad1(ctrl_daemon2.CtrlDaemon2):
 		self.place_portals()
 		self.place_doors()
 
+		#utils_obj.print_objects(toee.game.get_obj_by_id(DAEMON_GID).location)
+
 		#self.place_monsters_r03()
 		return
 
@@ -55,7 +58,7 @@ class CtrlRoad1(ctrl_daemon2.CtrlDaemon2):
 		return result
 
 	def place_portals(self):
-		#py06616_orc_fort_encounters.CtrlOrcFortPortalTowersToGroundSE.create_obj_at_loc(utils_obj.sec2loc(489, 488))
+		py06610_road_encounters.Portal2CitadelLv1.create_obj_at_locxy(457, 464, -4.24264097214, -1.41421306133)
 		#py06616_orc_fort_encounters.CtrlOrcFortPortalTowersToGroundSW.create_obj_at_loc(utils_obj.sec2loc(498, 469))
 		return
 

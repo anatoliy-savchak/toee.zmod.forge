@@ -2,7 +2,7 @@ import toee, debug, debugg, utils_toee, utils_storage, utils_obj, utils_item, co
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, utils_npc, utils_locks, const_proto_items, const_proto_scrolls, const_proto_rings
 import monster_info, module_quests, module_consts, module_globals
 
-DAEMON_SCRIPT_ID = 6610
+DAEMON_SCRIPT_ID = 6611
 DAEMON_GID = "G_0621A980_A4D0_4724_949F_B084035AAA6B"
 
 def san_new_map(attachee, triggerer):
