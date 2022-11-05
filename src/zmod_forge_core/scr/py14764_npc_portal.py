@@ -76,14 +76,19 @@ class CtrlPortalOut(ctrl_behaviour.CtrlBehaviour):
 		return MODULE_SCRIPT_ID
 
 	def do_travel(self, npc):
-		print("fade_and_teleport(0, 0, 0, {}, {}, {})...".format(self.get_dest_map(), self.get_dest_location()[0], self.get_dest_location()[1]))
+		print("fade_and_teleport({}, 0, 0, {}, {}, {})...".format(self.get_dest_travel_time_s(), self.get_dest_map(), self.get_dest_location()[0], self.get_dest_location()[1]))
 		toee.game.fade_and_teleport(
-			0, 0, 0, 
+			self.get_dest_travel_time_s(),
+			0, 0, 
 			self.get_dest_map(), 
 			self.get_dest_location()[0], 
 			self.get_dest_location()[1]
 			)
 		return
+
+	def get_dest_location(self): return 0
+	def get_dest_map(self): return 0
+	def get_dest_travel_time_s(self): return 0
 
 class CtrlPortalOutImmediate(CtrlPortalOut):
 	def dialog(self, attachee, triggerer):
@@ -92,8 +97,6 @@ class CtrlPortalOutImmediate(CtrlPortalOut):
 		self.do_travel(attachee)
 		return toee.SKIP_DEFAULT
 
-	def get_dest_location(self): return 0
-	def get_dest_map(self): return 0
 
 class CtrlPortalUp(CtrlPortalOut):
 	@classmethod

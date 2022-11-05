@@ -58,11 +58,10 @@ class CtrlRoad1(ctrl_daemon2.CtrlDaemon2):
 		return result
 
 	def place_portals(self):
-		py06610_road_encounters.Portal2CitadelLv1.create_obj_at_locxy(457, 464, -4.24264097214, -1.41421306133)
-		#py06616_orc_fort_encounters.CtrlOrcFortPortalTowersToGroundSW.create_obj_at_loc(utils_obj.sec2loc(498, 469))
+		py06610_road_encounters.PortalRoad1ToCitadelLv1.create_obj_at_locxy(457, 464, -4.24264097214, -1.41421306133)
+		py06610_road_encounters.PortalRoad1ToVillage.create_obj_at_locxy(484, 455, 2.8284277916, -8.48528194427)
 		return
 
 	def place_doors(self):
 		#utils_locks.portal_hook_autodestroy(493, 474, 30)
 		return
-

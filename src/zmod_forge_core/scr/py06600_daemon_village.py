@@ -44,6 +44,7 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 		return
 
 	def place_encounters_initial(self):
+		self.place_portals()
 		self.generate_wanderers()
 		self.place_merchants()
 		self.generate_people()
@@ -53,6 +54,7 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 		self.place_kerowyn()
 
 		self.daytime_check()
+		#utils_obj.print_objects(toee.game.leader.location)
 		return
 
 	# Sleep interface
@@ -300,4 +302,8 @@ class CtrlVillage(ctrl_daemon2.CtrlDaemon2):
 
 	def place_bar(self):
 		npc_barkeeper, ctrl = self.create_npc_at(utils_obj.sec2loc(487, 454), py06602_village_npc.CtrlVillageBarkeeper, const_toee.ROT04, "main", "barkeeper", None, 0, 1)
+		return
+
+	def place_portals(self):
+		py06602_village_npc.PortalVillageToRoad1.create_obj_at_locxy(467, 510, 2.8284277916, 0.0)
 		return

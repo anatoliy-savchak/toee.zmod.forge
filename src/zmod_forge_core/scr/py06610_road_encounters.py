@@ -16,10 +16,10 @@ def san_heartbeat(attachee, triggerer): return 0 if attachee.object_flags_get() 
 def san_wield_off(attachee, triggerer): return ctrl_behaviour.san_wield_off(attachee, triggerer)
 def gc(npc): return ctrl_behaviour.get_ctrl(npc.id)
 
-class Portal2CitadelLv1(py14764_npc_portal.CtrlPortalLaddersUp):
+class PortalRoad1ToCitadelLv1(py14764_npc_portal.CtrlPortalLaddersUp):
 	def after_created(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
-		super(Portal2CitadelLv1, self).after_created(npc)
+		super(PortalRoad1ToCitadelLv1, self).after_created(npc)
 		utils_npc.npc_description_set_new(npc, 'Stairwell')
 		return
 
@@ -33,8 +33,17 @@ class Portal2CitadelLv1(py14764_npc_portal.CtrlPortalLaddersUp):
 
 	def get_dest_map(self): return module_consts.MAP_ID_CITADEL_LV1
 
+	def get_dest_travel_time_s(self): return module_consts.TRAVEL_TIME_ROAD1_TO_CITADEL
+
 	def can_travel_road_to_citadel(self, npc): return True
 
 	def travel_road_to_citadel(self, npc): 
 		self.do_travel(npc)
 		return
+
+class PortalRoad1ToVillage(py14764_npc_portal.CtrlPortalOutImmediate):
+	def get_dest_location(self): return module_consts.VILLAGE_ENTRY_COORDS_ROAD_SOUTH
+
+	def get_dest_map(self): return module_consts.MAP_ID_VILLAGE
+
+	def get_dest_travel_time_s(self): return module_consts.TRAVEL_TIME_VILLAGE_TO_ROAD1

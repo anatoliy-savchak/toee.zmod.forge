@@ -1,7 +1,7 @@
 import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod, utils_npc, const_animate
 import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls, const_proto_list_cloth
 import debug, rumor_control
-import const_proto_npc, module_quests, module_globals
+import const_proto_npc, module_quests, module_globals, module_consts, py14764_npc_portal
 
 MODULE_SCRIPT_ID = 6602
 
@@ -14,6 +14,14 @@ def san_dialog(attachee, triggerer): return ctrl_behaviour.san_dialog(attachee, 
 def san_heartbeat(attachee, triggerer): return 0 if attachee.object_flags_get() & toee.OF_OFF else ctrl_behaviour.san_heartbeat(attachee, triggerer)
 def san_wield_off(attachee, triggerer): return ctrl_behaviour.san_wield_off(attachee, triggerer)
 def gc(npc): return ctrl_behaviour.get_ctrl(npc.id)
+
+class PortalVillageToRoad1(py14764_npc_portal.CtrlPortalOutImmediate):
+	def get_dest_location(self): return module_consts.ROAD1_ENTRY_COORDS_NORTH
+
+	def get_dest_map(self): return module_consts.MAP_ID_ROAD1
+
+	def get_dest_travel_time_s(self): return module_consts.TRAVEL_TIME_VILLAGE_TO_ROAD1
+
 
 class CtrlKerowyn(ctrl_behaviour.CtrlBehaviourAI):
 	@classmethod
@@ -175,3 +183,4 @@ class CtrlVillageBarkeeper(ctrl_behaviour.CtrlBehaviourAI):
 		toee.game.global_flags[module_globals.GFLAG_REST_ALLOWED] = 0
 		toee.game.sleep_status_update()
 		return toee.RUN_DEFAULT
+
