@@ -2,3 +2,7 @@
 {102}{Head down the stairs.}{}{1}{gc(npc).can_travel_road_to_citadel(npc)}{0}{gc(npc).travel_road_to_citadel(npc)}
 {109}{Step back.}{}{1}{}{0}{}
 
+{200}{Stairwell}{Stairwell}{}{}{}{}
+{202}{Head up the stairs.}{}{1}{gc(npc).can_travel_citadel_to_road1(npc)}{0}{gc(npc).travel_citadel_to_road1(npc)}
+{209}{Step back.}{}{1}{}{0}{}
+

@@ -41,6 +41,31 @@ class PortalRoad1ToCitadelLv1(py14764_npc_portal.CtrlPortalLaddersUp):
 		self.do_travel(npc)
 		return
 
+class PortalCitadelLv1ToRoad1(py14764_npc_portal.CtrlPortalLaddersUp):
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		super(PortalCitadelLv1ToRoad1, self).after_created(npc)
+		utils_npc.npc_description_set_new(npc, 'Stairwell')
+		return
+
+	@classmethod
+	def get_dialog_line_cls(cls, npc): return 200
+
+	@classmethod
+	def get_dialog_script_id_cls(cls, npc): return MODULE_SCRIPT_ID
+
+	def get_dest_location(self): return module_consts.ROAD1_ENTRY_COORDS_NEAR_LEDGE
+
+	def get_dest_map(self): return module_consts.MAP_ID_ROAD1
+
+	def get_dest_travel_time_s(self): return module_consts.TRAVEL_TIME_ROAD1_TO_CITADEL
+
+	def can_travel_citadel_to_road1(self, npc): return True
+
+	def travel_citadel_to_road1(self, npc): 
+		self.do_travel(npc)
+		return
+
 class PortalRoad1ToVillage(py14764_npc_portal.CtrlPortalOutImmediate):
 	def get_dest_location(self): return module_consts.VILLAGE_ENTRY_COORDS_ROAD_SOUTH
 
